@@ -15,4 +15,10 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
+    }
 }
