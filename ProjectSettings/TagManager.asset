@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Box
   - Trail
+  - RockSet_01
+  - TopPoint
   layers:
   - Default
   - TransparentFX
