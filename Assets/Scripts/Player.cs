@@ -18,15 +18,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "TopPoint")
+    //    {
+    //        if (leftRayInteractor != null && rightRayInteractor != null)
+    //        {
+    //            leftRayInteractor.enabled = false;
+    //            rightRayInteractor.enabled = false;
+    //        }
+    //    }
+    //}
+
+    public void TeleportToWinScreen(Transform target)
     {
-        if (other.tag == "TopPoint")
-        {
-            if (leftRayInteractor != null && rightRayInteractor != null)
-            {
-                leftRayInteractor.enabled = false;
-                rightRayInteractor.enabled = false;
-            }
-        }
+        this.transform.position = target.position;
     }
 }

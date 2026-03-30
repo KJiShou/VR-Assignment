@@ -21,4 +21,10 @@ public class LoadScene : MonoBehaviour
         Debug.Log("Quit Game");
         Application.Quit();
     }
+
+    public void LoadNextScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadSceneAsync((currentScene.buildIndex + 1) % SceneManager.sceneCount);
+    }
 }
