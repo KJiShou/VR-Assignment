@@ -8,6 +8,8 @@ TagManager:
   - Trail
   - RockSet_01
   - TopPoint
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX
