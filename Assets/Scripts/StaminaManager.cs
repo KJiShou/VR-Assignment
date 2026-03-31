@@ -2,36 +2,93 @@ using UnityEngine;
 
 public class StaminaManager : MonoBehaviour
 {
-    [Header("Stamina Settings")]
-    public float maxLeftStamina = 100f;
-    public float maxRightStamina = 100f;
+    [Header("Base Max Stamina")]
+    public float baseMaxLeftStamina = 100f;
+    public float baseMaxRightStamina = 100f;
 
     [Header("Current Stamina")]
     public float currentLeftStamina;
     public float currentRightStamina;
 
     [Header("Holding State")]
-    public bool isLeftHolding;
-    public bool isRightHolding;
+    public bool isLeftHolding = false;
+    public bool isRightHolding = false;
 
-    private float leftDrainRate;
-    private float rightDrainRate;
-    private float increaseRate = 1;
+    private float leftDrainRate = 0f;
+    private float rightDrainRate = 0f;
+
+    [Header("Recovery Settings")]
+    public float leftRecoveryRate = 15f;
+    public float rightRecoveryRate = 15f;
+
+    [Header("Chalk Settings")]
+    public float chalkBonus = 30f;
+    public float chalkDuration = 10f;
+
+    [Header("Left Chalk State")]
+    public bool leftChalkActive = false;
+    public float leftChalkTimer = 0f;
+
+    [Header("Right Chalk State")]
+    public bool rightChalkActive = false;
+    public float rightChalkTimer = 0f;
 
     private ClimbObject currentLeftClimbObject;
     private ClimbObject currentRightClimbObject;
 
     void Start()
     {
-        currentLeftStamina = maxLeftStamina;
-        currentRightStamina = maxRightStamina;
+        currentLeftStamina = baseMaxLeftStamina;
+        currentRightStamina = baseMaxRightStamina;
     }
 
     void Update()
     {
+        UpdateChalkTimer();
         DrainStaminaOverTime();
+        RecoverStaminaOverTime();
         CheckAutoDrop();
-        Debug.Log(currentLeftStamina);
+    }
+
+    private void UpdateChalkTimer()
+    {
+        if (leftChalkActive)
+        {
+            leftChalkTimer -= Time.deltaTime;
+
+            if (leftChalkTimer <= 0f)
+            {
+                EndLeftChalk();
+            }
+        }
+
+        if (rightChalkActive)
+        {
+            rightChalkTimer -= Time.deltaTime;
+
+            if (rightChalkTimer <= 0f)
+            {
+                EndRightChalk();
+            }
+        }
+    }
+
+    private void EndLeftChalk()
+    {
+        currentLeftStamina -= chalkBonus;
+        currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, baseMaxLeftStamina);
+
+        leftChalkActive = false;
+        leftChalkTimer = 0f;
+    }
+
+    private void EndRightChalk()
+    {
+        currentRightStamina -= chalkBonus;
+        currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, baseMaxRightStamina);
+
+        rightChalkActive = false;
+        rightChalkTimer = 0f;
     }
 
     private void DrainStaminaOverTime()
@@ -39,23 +96,29 @@ public class StaminaManager : MonoBehaviour
         if (isLeftHolding)
         {
             currentLeftStamina -= leftDrainRate * Time.deltaTime;
-            currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, maxLeftStamina);
-        } 
-        else
-        {
-            currentLeftStamina += increaseRate * Time.deltaTime;
-            currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, maxLeftStamina);
         }
 
         if (isRightHolding)
         {
             currentRightStamina -= rightDrainRate * Time.deltaTime;
-            currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, maxRightStamina);
         }
-        else
+
+        currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
+        currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
+    }
+
+    private void RecoverStaminaOverTime()
+    {
+        if (!isLeftHolding)
         {
-            currentRightStamina += increaseRate * Time.deltaTime;
-            currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, maxLeftStamina);
+            currentLeftStamina += leftRecoveryRate * Time.deltaTime;
+            currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
+        }
+
+        if (!isRightHolding)
+        {
+            currentRightStamina += rightRecoveryRate * Time.deltaTime;
+            currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
         }
     }
 
@@ -106,13 +169,53 @@ public class StaminaManager : MonoBehaviour
         }
     }
 
-    public void AddLeftStamina(float amount)
+    public void UseLeftChalk()
     {
-        currentLeftStamina = Mathf.Clamp(currentLeftStamina + amount, 0f, maxLeftStamina);
+        if (!leftChalkActive)
+        {
+            currentLeftStamina += chalkBonus;
+            currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, baseMaxLeftStamina + chalkBonus);
+        }
+
+        leftChalkActive = true;
+        leftChalkTimer = chalkDuration;
     }
 
-    public void AddRightStamina(float amount)
+    public void UseRightChalk()
     {
-        currentRightStamina = Mathf.Clamp(currentRightStamina + amount, 0f, maxRightStamina);
+        if (!rightChalkActive)
+        {
+            currentRightStamina += chalkBonus;
+            currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, baseMaxRightStamina + chalkBonus);
+        }
+
+        rightChalkActive = true;
+        rightChalkTimer = chalkDuration;
+    }
+
+    public void UseBothHandsChalk()
+    {
+        UseLeftChalk();
+        UseRightChalk();
+    }
+
+    public float GetCurrentLeftMaxStamina()
+    {
+        return leftChalkActive ? baseMaxLeftStamina + chalkBonus : baseMaxLeftStamina;
+    }
+
+    public float GetCurrentRightMaxStamina()
+    {
+        return rightChalkActive ? baseMaxRightStamina + chalkBonus : baseMaxRightStamina;
+    }
+
+    public float GetLeftChalkTimeRemaining()
+    {
+        return leftChalkActive ? leftChalkTimer : 0f;
+    }
+
+    public float GetRightChalkTimeRemaining()
+    {
+        return rightChalkActive ? rightChalkTimer : 0f;
     }
 }
