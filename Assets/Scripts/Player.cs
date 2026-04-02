@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     public void TeleportToWinScreen(Transform target)
     {
+        Debug.Log("Teleport");
         this.transform.position = target.position;
     }
 }
