@@ -20,6 +20,7 @@ public class StaminaManager : MonoBehaviour
     [Header("Recovery Settings")]
     public float leftRecoveryRate = 15f;
     public float rightRecoveryRate = 15f;
+    public float bothHandsRecoveryRate = 5f;
 
     [Header("Chalk Settings")]
     public float chalkBonus = 30f;
@@ -109,15 +110,18 @@ public class StaminaManager : MonoBehaviour
 
     private void RecoverStaminaOverTime()
     {
+        float leftRecovery = isLeftHolding && isRightHolding ? bothHandsRecoveryRate : leftRecoveryRate;
+        float rightRecovery = isLeftHolding && isRightHolding ? bothHandsRecoveryRate : rightRecoveryRate;
+
         if (!isLeftHolding)
         {
-            currentLeftStamina += leftRecoveryRate * Time.deltaTime;
+            currentLeftStamina += leftRecovery * Time.deltaTime;
             currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
         }
 
         if (!isRightHolding)
         {
-            currentRightStamina += rightRecoveryRate * Time.deltaTime;
+            currentRightStamina += rightRecovery * Time.deltaTime;
             currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
         }
     }
