@@ -1,10 +1,134 @@
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 
 public class Player : MonoBehaviour
 {
     public XRRayInteractor leftRayInteractor;
     public XRRayInteractor rightRayInteractor;
+
+    public CheckPointManager checkPointManager;
+
+    public GameObject fadeCanvas;
+    private FadeCanvas _fadeCanvas;
+    public float transitionTime = 2.0f;
+
+    [Header("Settings")]
+    public float deathFallDistance = 5.0f; // Over this distance count as death
+
+    [Tooltip("Respawn interval time")]
+    public float respawnProtectionTime = 2.0f;
+
+    private CharacterController _characterController;
+    private ClimbProvider _climbProvider;
+
+    private float _highestPointDuringFall;
+    private bool _wasFallingLastFrame;
+    private float _protectionTimer = 0f;
+
+    void Awake()
+    {
+        _characterController = GetComponent<CharacterController>();
+        _climbProvider = GetComponentInChildren<ClimbProvider>();
+
+        if(fadeCanvas != null)
+        {
+            _fadeCanvas = fadeCanvas.GetComponent<FadeCanvas>();
+        }
+    }
+
+    private void Update()
+    {
+        if (_protectionTimer > 0)
+        {
+            _protectionTimer -= Time.deltaTime;
+            _highestPointDuringFall = transform.position.y;
+        }
+
+        // not on floor and not climbing
+        bool isClimbing = _climbProvider != null && _climbProvider.locomotionState == LocomotionState.Moving;
+
+        if (_climbProvider != null && !isClimbing)
+        {
+            // if not climbing, force enable gravity, prevent floating
+            _characterController.SimpleMove(Vector3.zero);
+        }
+
+        bool isGrounded = _characterController.isGrounded;
+        bool isFalling = !isGrounded && !isClimbing && _characterController.velocity.y < -0.1f;
+
+        if (isFalling)
+        {
+            if (!_wasFallingLastFrame)
+            {
+                // When start falling, record initial falling point
+                _highestPointDuringFall = transform.position.y;
+            }
+
+            float currentFallDistance = _highestPointDuringFall - transform.position.y;
+
+            if (currentFallDistance > deathFallDistance && _protectionTimer <= 0f)
+            {
+                TriggerDeath();
+                return;
+            }
+        }
+        else
+        {
+            // fall on the floor or restart climbing
+            _wasFallingLastFrame = false;
+        }
+
+        _wasFallingLastFrame = isFalling;
+    }
+
+    private void TriggerDeath()
+    {
+        Debug.Log("<color=red>[DEATH]</color> Fall distance greater than Death distance");
+        _wasFallingLastFrame = false;
+        _protectionTimer = respawnProtectionTime;
+
+        StartCoroutine(DeathAndRespawnSequence());
+    }
+
+    private IEnumerator DeathAndRespawnSequence()
+    {
+        // 1. 瞬间启动黑屏 (假设耗时 1 秒)
+        if (_fadeCanvas != null)
+        {
+            _fadeCanvas.StartFadeIn();
+            yield return new WaitForSeconds(_fadeCanvas.defaultDuration);
+        }
+
+        // 2. 此时屏幕已经完全黑了！在这里执行传送，玩家就看不到画面的突变了
+        if (checkPointManager != null && checkPointManager.currentCheckPointIndex != -1)
+        {
+            Transform targetSpawn = checkPointManager.checkPoints[checkPointManager.currentCheckPointIndex].respawnPoint;
+            if (_characterController != null)
+            {
+                _characterController.enabled = false;
+            }
+
+            transform.position = targetSpawn.position;
+            transform.rotation = targetSpawn.rotation;
+
+            if (_characterController != null)
+            {
+                _characterController.enabled = true;
+            }
+        }
+
+        // 3. 在黑屏且安全的地方，让玩家躺 2 秒钟冷静一下 (这就是你要求的“数秒后”)
+        yield return new WaitForSeconds(transitionTime);
+
+        // 4. 重新亮起屏幕，游戏继续！
+        if (_fadeCanvas != null)
+        {
+            _fadeCanvas.StartFadeOut();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,21 +142,40 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "TopPoint")
-    //    {
-    //        if (leftRayInteractor != null && rightRayInteractor != null)
-    //        {
-    //            leftRayInteractor.enabled = false;
-    //            rightRayInteractor.enabled = false;
-    //        }
-    //    }
-    //}
-
     public void TeleportToWinScreen(Transform target)
     {
-        Debug.Log("Teleport");
-        this.transform.position = target.position;
+        StartCoroutine(Teleport(target));
     }
+
+    public IEnumerator Teleport(Transform target)
+    {
+        Debug.Log("TeleportToSpecificPoint()");
+        if (_fadeCanvas != null)
+        {
+            _fadeCanvas.StartFadeIn();
+            yield return new WaitForSeconds(_fadeCanvas.defaultDuration);
+        }
+
+        if (_characterController != null)
+        {
+            _characterController.enabled = false;
+        }
+
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+
+        if (_characterController != null)
+        {
+            _characterController.enabled = true;
+        }
+
+        yield return new WaitForSeconds(transitionTime);
+
+        // 4. 重新亮起屏幕，游戏继续！
+        if (_fadeCanvas != null)
+        {
+            _fadeCanvas.StartFadeOut();
+        }
+    }
+
 }
