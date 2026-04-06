@@ -7,9 +7,10 @@ TagManager:
   - Box
   - Trail
   - RockSet_01
-  - TopPoint
   - LeftHand
   - RightHand
+  - Checkpoint
+  - TopPoint
   layers:
   - Default
   - TransparentFX

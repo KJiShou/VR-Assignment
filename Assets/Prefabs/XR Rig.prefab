@@ -1539,7 +1539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7137780120922069923
 Transform:
   m_ObjectHideFlags: 0
@@ -2934,7 +2934,7 @@ GameObject:
   - component: {fileID: 9104521980480651901}
   m_Layer: 0
   m_Name: XR Rig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3097,6 +3097,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   leftRayInteractor: {fileID: 6868344278623520204}
   rightRayInteractor: {fileID: 1312652216609947905}
+  checkPointManager: {fileID: 0}
+  deathFallDistance: 5
+  respawnProtectionTime: 2
 --- !u!114 &3214926624866552651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3640,6 +3643,7 @@ MonoBehaviour:
   m_TransformationPriority: 0
   m_ProvidersToDisable:
   - {fileID: 5211219334816880864}
+  - {fileID: 2997209508531669046}
   m_EnableGravityOnClimbEnd: 1
   m_ClimbSettings:
     m_UseConstant: 1
