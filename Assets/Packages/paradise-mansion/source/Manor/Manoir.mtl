@@ -1,0 +1,755 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 17.03.2020 23:25:31
+
+newmtl Mur01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur01_Diffuse.tga
+	map_Kd maps\Mur01_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__103_Normal Bump.tga
+
+newmtl mur_pente01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_mur_pente01_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_mur_pente01_D.bmp
+	map_bump -bm 0.300000 maps\Map__138_Normal Bump.tga
+
+newmtl mur_fenetre01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur_Fenetre01_Diffuse.tga
+	map_Kd maps\Mur_Fenetre01_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__113_Normal Bump.tga
+
+newmtl Mur_fenetre02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur_Fenetre02_Diffuse.tga
+	map_Kd maps\Mur_Fenetre02_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__109_Normal Bump.tga
+
+newmtl Poutre01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Poutre_petite_Diffuse.tga
+	map_Kd maps\Poutre_petite_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__101_Normal Bump.tga
+
+newmtl mur_pierre01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur_Pierre01_Diffuse.tga
+	map_Kd maps\Mur_Pierre01_Diffuse.tga
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_mur_pierre01_S.bmp
+	map_bump -bm 0.300000 maps\Map__124_Normal Bump.tga
+
+newmtl fenetre03
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur_Fenetre03_Diffuse.tga
+	map_Kd maps\Mur_Fenetre03_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__111_Normal Bump.tga
+
+newmtl pillier01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Pilier_Diffuse.tga
+	map_Kd maps\Pilier_Diffuse.tga
+	map_Ks maps\Pilier_Spec.tga
+	map_bump -bm 0.300000 maps\Map__117_Normal Bump.tga
+
+newmtl toit01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Roof01_Diffuse.tga
+	map_Kd maps\Roof01_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__119_Normal Bump.tga
+
+newmtl Toit02
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Roof02_Diffuse.tga
+	map_Kd maps\Roof02_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__122_Normal Bump.tga
+
+newmtl toit01_partB
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Roof03_Diffuse.tga
+	map_Kd maps\Roof03_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__142_Normal Bump.tga
+
+newmtl balcon01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Balcon01_Diffuse.tga
+	map_Kd maps\Balcon01_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__115_Normal Bump.tga
+
+newmtl balcon01_barierre
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_balcon01_barierre_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_balcon01_barierre_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_balcon01_barierre_S.bmp
+	map_bump -bm 0.300000 maps\Map__148_Normal Bump.tga
+
+newmtl toit_porte
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_toit_porte_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_toit_porte_D.bmp
+	map_bump -bm 0.300000 maps\Map__132_Normal Bump.tga
+
+newmtl toit_bout
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Toit_Bout_Diffuse.tga
+	map_Kd maps\Toit_Bout_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__134_Normal Bump.tga
+
+newmtl cuivre
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_cuivre_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_cuivre_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_cuivre_S.bmp
+	map_bump -bm 0.300000 maps\Map__140_Normal Bump.tga
+
+newmtl mur_fenetre04
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur_Fenetre04_Diffuse.tga
+	map_Kd maps\Mur_Fenetre04_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__105_Normal Bump.tga
+
+newmtl cabine
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Cabine_Diffuse.tga
+	map_Kd maps\Cabine_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__126_Normal Bump.tga
+
+newmtl mur_platre
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Mur_Platre_Diffuse.tga
+	map_Kd maps\Mur_Platre_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__150_Normal Bump.tga
+
+newmtl mur03
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_mur03_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_mur03_D.bmp
+	map_bump -bm 0.300000 maps\Map__136_Normal Bump.tga
+
+newmtl fenetre01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Fenetre01_Diffuse.tga
+	map_Kd maps\Fenetre01_Diffuse.tga
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_fenetre01_S.bmp
+	map_bump -bm 0.300000 maps\Map__130_Normal Bump.tga
+
+newmtl porte
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Porte_Diffuse.tga
+	map_Kd maps\Porte_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__128_Normal Bump.tga
+
+newmtl planche_bois02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_planche_bois02_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_planche_bois02_D.bmp
+	map_bump -bm 0.300000 maps\Map__144_Normal Bump.tga
+
+newmtl barierre01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_barierre01_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_barierre01_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_barierre01_S.bmp
+	map_bump -bm 0.300000 maps\Map__146_Normal Bump.tga
+
+newmtl barierre02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_barierre02_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_barierre02_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_barierre02_S.bmp
+	map_bump -bm 0.300000 maps\Map__152_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_volet
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_volet_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_volet_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_volet_S.bmp
+	map_bump -bm 0.300000 maps\Map__173_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_porte01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_porte01_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_porte01_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_porte01_S.bmp
+	map_bump -bm 0.300000 maps\Map__163_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_Porte02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_Porte02_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_Porte02_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_Porte02_S.bmp
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_cabine02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Cabine02_Diffuse.tga
+	map_Kd maps\Cabine02_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__175_Normal Bump.tga
+
+newmtl fenetre02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Fenetre02_Diffuse.tga
+	map_Kd maps\Fenetre02_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__107_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_poutre_bois
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_poutre_bois_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_poutre_bois_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_poutre_bois_S.bmp
+	map_bump -bm 0.300000 maps\Map__171_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_cabine03
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Cabine03_Diffuse.tga
+	map_Kd maps\Cabine03_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__177_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_planche_bois1
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Table_Diffuse.tga
+	map_Kd maps\Table_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__156_Normal Bump.tga
+
+newmtl grande_poutre
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Poutre_Diffuse.tga
+	map_Kd maps\Poutre_Diffuse.tga
+	map_bump -bm 0.300000 maps\Map__97_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_porte03
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_porte03_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_porte03_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_porte03_S.bmp
+	map_bump -bm 0.300000 maps\Map__181_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_crane
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_crane_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_crane_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_crane_S.bmp
+	map_bump -bm 0.300000 maps\Map__179_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_statue01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_statue01_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_statue01_D.bmp
+	map_bump -bm 0.300000 maps\Map__167_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_ailes
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_ailes_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_ailes_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_ailes_S.bmp
+	map_bump -bm 0.300000 maps\Map__183_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_statue02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_statue02_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_statue02_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_statue02_S.bmp
+	map_bump -bm 0.300000 maps\Map__165_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_statue03
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_statue03_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_statue03_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_statue03_S.bmp
+	map_bump -bm 0.300000 maps\Map__187_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_telescope02
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_telescope02_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_telescope02_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_telescope02_S.bmp
+	map_bump -bm 0.300000 maps\Map__169_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_torche
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_torche_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_torche_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_torche_S.bmp
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_coffre
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_coffre_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_coffre_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_coffre_S.bmp
+	map_bump -bm 0.300000 maps\Map__154_Normal Bump.tga
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_chandelier
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_chandelier_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_chandelier_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_chandelier_S.bmp
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_books
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_books_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_books_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_books_S.bmp
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_lampe
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_lampe_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_lampe_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_lampe_S.bmp
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_encadrement
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_encadrement_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_encadrement_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_encadrement_S.bmp
+
+newmtl _ManoirYann_TFA_Pack_Mat_Mat_lampe01
+	Ns 30.000002
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.550000 0.550000 0.550000
+	Kd 0.550000 0.550000 0.550000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Yann_TFA_Pack_Mat_Mat_lampe01_D.bmp
+	map_Kd maps\Yann_TFA_Pack_Mat_Mat_lampe01_D.bmp
+	map_Ks maps\Yann_TFA_Pack_Mat_Mat_lampe01_S.bmp
+	map_d maps\Lampe01_Opacity.tga
+	map_bump -bm 0.300000 maps\Map__158_Normal Bump.tga
+
+newmtl _roche01_LOWdefault
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\Roche01_Diffuse.tga
+	map_Kd maps\Roche01_Diffuse.tga

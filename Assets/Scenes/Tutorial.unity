@@ -2221,7 +2221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &243206929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3577,7 +3577,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8617,7 +8617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479654, guid: f741cbf7ed67cef4da9d08dbbe0baa3c, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6479654, guid: f741cbf7ed67cef4da9d08dbbe0baa3c, type: 3}
       propertyPath: m_IsTrigger
@@ -8626,7 +8626,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 178058, guid: f741cbf7ed67cef4da9d08dbbe0baa3c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 993853139}
   m_SourcePrefab: {fileID: 100100000, guid: f741cbf7ed67cef4da9d08dbbe0baa3c, type: 3}
 --- !u!1 &687318577
 GameObject:
@@ -10594,7 +10598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &769437932
 Transform:
   m_ObjectHideFlags: 0
@@ -11313,6 +11317,18 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1250286512}
+        m_TargetAssemblyTypeName: ClimbGravityFixer, Assembly-CSharp
+        m_MethodName: WinGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1178681781}
         m_TargetAssemblyTypeName: Flag, Assembly-CSharp
         m_MethodName: SetFlagWave
@@ -13395,6 +13411,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992685849}
   m_CullTransparentMesh: 1
+--- !u!1 &993853135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 178058, guid: f741cbf7ed67cef4da9d08dbbe0baa3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 682871464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &993853139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993853135}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.92, y: 4.5, z: 5.7}
+  m_Center: {x: 0.0000054836273, y: -0.00000500679, z: 0.5500001}
 --- !u!4 &1010772148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8110712055636301467, guid: 8c2cef216cd3f0b4089195084f28cb83,
@@ -16244,6 +16287,7 @@ GameObject:
   - component: {fileID: 1250286507}
   - component: {fileID: 1250286506}
   - component: {fileID: 1250286511}
+  - component: {fileID: 1250286512}
   m_Layer: 0
   m_Name: XR Rig
   m_TagString: Untagged
@@ -16357,8 +16401,8 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.1
   m_SlopeLimit: 45
-  m_StepOffset: 0.05
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.01
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1250286509
@@ -16387,7 +16431,7 @@ Transform:
   m_GameObject: {fileID: 1250286505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -12.27, y: 1.11, z: -0.16}
+  m_LocalPosition: {x: -10.58, y: 1.11, z: -0.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16409,6 +16453,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   leftRayInteractor: {fileID: 1498520980}
   rightRayInteractor: {fileID: 720221812}
+--- !u!114 &1250286512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250286505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de817782b2de8884fb2407f9e34efb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClimbGravityFixer
+  isWin: 0
 --- !u!1001 &1254959594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19038,7 +19095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e4a6bb0771a54e54dae63a3d0520c4c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.998
+      value: -0.856
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e4a6bb0771a54e54dae63a3d0520c4c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22210,6 +22267,7 @@ MonoBehaviour:
   m_RepeatRate: 0.1
   m_TrackedDeviceDragThresholdMultiplier: 1.4
   m_TrackedScrollDeltaMultiplier: 5
+  m_NonTrackedScrollDeltaMultiplier: 6
   m_BypassUIToolkitEvents: 0
   m_ActiveInputMode: 1
   m_EnableXRInput: 1
@@ -27002,6 +27060,7 @@ MonoBehaviour:
   m_TransformationPriority: 0
   m_ProvidersToDisable:
   - {fileID: 820397522}
+  - {fileID: 769437933}
   m_EnableGravityOnClimbEnd: 1
   m_ClimbSettings:
     m_UseConstant: 1
@@ -27944,6 +28003,7 @@ GameObject:
   - component: {fileID: 8018584554818199674}
   - component: {fileID: 8018584554817069754}
   - component: {fileID: 8018584554812773082}
+  - component: {fileID: 8018584554819075195}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -27951,6 +28011,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &8018584554819075195
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018584554819075194}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
