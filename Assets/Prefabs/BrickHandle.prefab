@@ -378,6 +378,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1620261446061382919}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 981e1e0c909557840b120e600d8a72a4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4993758546309231623}
   m_SourcePrefab: {fileID: 100100000, guid: 981e1e0c909557840b120e600d8a72a4, type: 3}
 --- !u!23 &6993431526274906653 stripped
 MeshRenderer:
@@ -538,11 +542,11 @@ MonoBehaviour:
   m_MaxInteractionDistance: 0.1
   m_ClimbAssistanceTeleportVolume: {fileID: 0}
   m_ClimbSettingsOverride:
-    m_UseConstant: 1
+    m_UseConstant: 0
     m_ConstantValue:
       m_AllowFreeXMovement: 1
       m_AllowFreeYMovement: 1
-      m_AllowFreeZMovement: 1
+      m_AllowFreeZMovement: 0
     m_Variable: {fileID: 0}
 --- !u!114 &3405394238547157011
 MonoBehaviour:
@@ -583,3 +587,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03b53f8d9c365f41b4af1293dab9845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClimbDebug
+--- !u!114 &-4993758546309231623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918491794730011681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d3ac57f95d66346bfbec1becf23947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClimbObject
+  reducedStamina: 1
