@@ -33,13 +33,13 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         // If not found playerpref key, default set as 1
-        float savedMaster = PlayerPrefs.GetFloat(PREF_MASTER_VOL, 1f);
-        float savedAmbient = PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
-        float savedSFX = PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
+        //float savedMaster = PlayerPrefs.GetFloat(PREF_MASTER_VOL, 1f);
+        //float savedAmbient = PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
+        //float savedSFX = PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
 
-        SetMasterVolume(savedMaster);
-        SetAmbientVolume(savedAmbient);
-        SetSFXVolume(savedSFX);
+        //SetMasterVolume(savedMaster);
+        //SetAmbientVolume(savedAmbient);
+        //SetSFXVolume(savedSFX);
 
         if (mainMenuBGM != null)
         {
@@ -114,6 +114,6 @@ public class AudioManager : MonoBehaviour
     }
 
     public float GetSavedMasterVolume() => PlayerPrefs.GetFloat(PREF_MASTER_VOL, 1f);
-    public float GetSavedBGMVolume() => PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
+    public float GetSavedAmbientVolume() => PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
     public float GetSavedSFXVolume() => PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
 }
