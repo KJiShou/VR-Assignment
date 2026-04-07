@@ -15,8 +15,6 @@ public class ClimbObject : MonoBehaviour
     private IXRSelectInteractor leftHandInteractor;
     private IXRSelectInteractor rightHandInteractor;
 
-    private SimpleAudioFeedback simpleAudioFeedback;
-
     void Awake()
     {
         _interactable = GetComponent<XRBaseInteractable>();
@@ -24,17 +22,6 @@ public class ClimbObject : MonoBehaviour
 
         _interactable.selectEntered.AddListener(OnGrab);
         _interactable.selectExited.AddListener(OnRelease);
-    }
-
-    private void Start()
-    {
-        if (AudioManager.Instance.sfxSource != null)
-        {
-            if (TryGetComponent<SimpleAudioFeedback>(out simpleAudioFeedback))
-            {
-                simpleAudioFeedback.audioSource = AudioManager.Instance.sfxSource;
-            }
-        }
     }
 
     private void OnGrab(SelectEnterEventArgs args)
