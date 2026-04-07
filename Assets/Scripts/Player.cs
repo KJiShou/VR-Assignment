@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public XRRayInteractor leftRayInteractor;
     public XRRayInteractor rightRayInteractor;
 
+    public XRDirectInteractor leftDirectInteractor;
+    public XRDirectInteractor rightDirectInteractor;
+
     public CheckPointManager checkPointManager;
 
     public GameObject fadeCanvas;
@@ -41,6 +44,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (leftDirectInteractor != null && leftRayInteractor != null)
+        {
+            leftRayInteractor.enabled = !leftDirectInteractor.hasSelection;
+        }
+
+        if (rightDirectInteractor != null && rightRayInteractor != null)
+        {
+            rightRayInteractor.enabled = !rightDirectInteractor.hasSelection;
+        }
+
         if (_protectionTimer > 0)
         {
             _protectionTimer -= Time.deltaTime;
@@ -95,14 +108,12 @@ public class Player : MonoBehaviour
 
     private IEnumerator DeathAndRespawnSequence()
     {
-        // 1. 瞬间启动黑屏 (假设耗时 1 秒)
         if (_fadeCanvas != null)
         {
             _fadeCanvas.StartFadeIn();
             yield return new WaitForSeconds(_fadeCanvas.defaultDuration);
         }
 
-        // 2. 此时屏幕已经完全黑了！在这里执行传送，玩家就看不到画面的突变了
         if (checkPointManager != null && checkPointManager.currentCheckPointIndex != -1)
         {
             Transform targetSpawn = checkPointManager.checkPoints[checkPointManager.currentCheckPointIndex].respawnPoint;
@@ -120,10 +131,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        // 3. 在黑屏且安全的地方，让玩家躺 2 秒钟冷静一下 (这就是你要求的“数秒后”)
         yield return new WaitForSeconds(transitionTime);
 
-        // 4. 重新亮起屏幕，游戏继续！
         if (_fadeCanvas != null)
         {
             _fadeCanvas.StartFadeOut();
@@ -171,7 +180,6 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        // 4. 重新亮起屏幕，游戏继续！
         if (_fadeCanvas != null)
         {
             _fadeCanvas.StartFadeOut();
