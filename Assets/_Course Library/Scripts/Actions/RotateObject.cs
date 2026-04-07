@@ -11,7 +11,7 @@ public class RotateObject : MonoBehaviour
     [Tooltip("The max speed of the rotation")]
     public float speed = 10.0f;
 
-    private bool isRotating = false;
+    public bool isRotating = false;
 
     public void SetIsRotating(bool value)
     {
@@ -50,7 +50,11 @@ public class RotateObject : MonoBehaviour
     private void Update()
     {
         if (isRotating)
+        {
+            Debug.Log("Rotating");
             Rotate();
+        }
+            
     }
 
     private void Rotate()
