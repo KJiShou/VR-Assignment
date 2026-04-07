@@ -12,6 +12,12 @@ public class Flag : MonoBehaviour
     private float stopWaveIntensity = 0.5f;
     private float stopWaveSpeed = 1.0f;
 
+    private void Start()
+    {
+        Shader.SetGlobalFloat("_Wave_Intensity", stopWaveIntensity);
+        Shader.SetGlobalFloat("_Wave_Speed", stopWaveSpeed);
+    }
+
     public void SetFlagWave()
     {
         Shader.SetGlobalFloat("_Wave_Intensity", waveIntensity);
