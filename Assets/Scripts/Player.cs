@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
     public GameObject fadeCanvas;
     private FadeCanvas _fadeCanvas;
     public float transitionTime = 2.0f;
+
+    public GameObject settingsPanel;
 
     [Header("Settings")]
     public float deathFallDistance = 5.0f; // Over this distance count as death
@@ -44,15 +47,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (leftDirectInteractor != null && leftRayInteractor != null)
-        {
-            leftRayInteractor.enabled = !leftDirectInteractor.hasSelection;
-        }
+        //if (leftDirectInteractor != null && leftRayInteractor != null)
+        //{
+        //    leftRayInteractor.enabled = !leftDirectInteractor.hasSelection;
+        //}
 
-        if (rightDirectInteractor != null && rightRayInteractor != null)
-        {
-            rightRayInteractor.enabled = !rightDirectInteractor.hasSelection;
-        }
+        //if (rightDirectInteractor != null && rightRayInteractor != null)
+        //{
+        //    rightRayInteractor.enabled = !rightDirectInteractor.hasSelection;
+        //}
 
         if (_protectionTimer > 0)
         {
@@ -62,6 +65,11 @@ public class Player : MonoBehaviour
 
         // not on floor and not climbing
         bool isClimbing = _climbProvider != null && _climbProvider.locomotionState == LocomotionState.Moving;
+
+        if (isClimbing && settingsPanel.activeSelf) 
+        {
+            ToggleMenu();
+        }
 
         if (_climbProvider != null && !isClimbing)
         {
@@ -183,6 +191,15 @@ public class Player : MonoBehaviour
         if (_fadeCanvas != null)
         {
             _fadeCanvas.StartFadeOut();
+        }
+    }
+
+    public void ToggleMenu()
+    {
+        if (settingsPanel != null)
+        {
+            bool isActive = settingsPanel.activeSelf;
+            settingsPanel.SetActive(!isActive);
         }
     }
 
