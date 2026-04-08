@@ -18,7 +18,7 @@ public class StageUIController : MonoBehaviour
         {
             if (stageUis[i].TryGetComponent<Button>(out stageButtons[i]))
             {
-                bool isUnlocked = (currentLevel > i);
+                bool isUnlocked = ((currentLevel + 1) > i);
 
                 stageButtons[i].interactable = isUnlocked;
                 stageUis[i].transform.GetChild(1).gameObject.SetActive(!isUnlocked);
