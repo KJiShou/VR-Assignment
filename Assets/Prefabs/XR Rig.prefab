@@ -1184,6 +1184,7 @@ GameObject:
   - component: {fileID: 4162047095267335144}
   - component: {fileID: 7073620584923312184}
   - component: {fileID: 8418898082569226440}
+  - component: {fileID: 4984340900964193904}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -2126,6 +2127,38 @@ MonoBehaviour:
   - {fileID: 54406016594991313}
   - {fileID: 6868344278623520204}
   m_StartingInteractionOverridesMap: []
+--- !u!114 &4984340900964193904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055332251352769192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f25c92ac5d4fa8499780f229f8b29f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  directInteractor: {fileID: 54406016594991313}
+  velocityAction: {fileID: 7576130356956909076, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  shakeThreshold: 2.5
+  cooldownTime: 0.5
+  onShakeTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: StaminaManager, Assembly-CSharp
+        m_MethodName: UseLeftChalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2221818344385630775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,6 +3991,7 @@ GameObject:
   - component: {fileID: 1508247122435494906}
   - component: {fileID: 5111614160200098175}
   - component: {fileID: 2923158671923414231}
+  - component: {fileID: 8271854055473106449}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -4898,6 +4932,38 @@ MonoBehaviour:
   - {fileID: 2804505020735669313}
   - {fileID: 1312652216609947905}
   m_StartingInteractionOverridesMap: []
+--- !u!114 &8271854055473106449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6897655008370893017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f25c92ac5d4fa8499780f229f8b29f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeDetector
+  directInteractor: {fileID: 2804505020735669313}
+  velocityAction: {fileID: -3476088630951739699, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  shakeThreshold: 2.5
+  cooldownTime: 0.5
+  onShakeTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: StaminaManager, Assembly-CSharp
+        m_MethodName: UseRightChalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6979327782756555497
 GameObject:
   m_ObjectHideFlags: 0
