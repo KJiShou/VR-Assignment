@@ -46,7 +46,7 @@ public class StaminaManager : MonoBehaviour
     void Update()
     {
         UpdateChalkTimer();
-        DrainStaminaOverTime();
+        if(!(isLeftHolding && isRightHolding))DrainStaminaOverTime();
         RecoverStaminaOverTime();
         CheckAutoDrop();
     }
@@ -121,6 +121,14 @@ public class StaminaManager : MonoBehaviour
 
         if (!isRightHolding)
         {
+            currentRightStamina += rightRecovery * Time.deltaTime;
+            currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
+        }
+
+        if (isLeftHolding && isRightHolding)
+        {
+            currentLeftStamina += leftRecovery * Time.deltaTime;
+            currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
             currentRightStamina += rightRecovery * Time.deltaTime;
             currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
         }
