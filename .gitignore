@@ -104,3 +104,7 @@ InitTestScene*.unity*
 
 # Ignore PlasticSCM folder
 .plastic
+
+# Claude Code files
+/CLAUDE.md
+/.claude/
