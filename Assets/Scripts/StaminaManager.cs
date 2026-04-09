@@ -185,8 +185,7 @@ public class StaminaManager : MonoBehaviour
 
     public void UseLeftChalk()
     {
-        Debug.Log("UseLeftChalk()");
-        if (!leftChalkActive)
+        if (!leftChalkActive && !isLeftHolding)
         {
             currentLeftStamina += chalkBonus;
             currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, baseMaxLeftStamina + chalkBonus);
@@ -198,8 +197,7 @@ public class StaminaManager : MonoBehaviour
 
     public void UseRightChalk()
     {
-        Debug.Log("UseRightChalk()");
-        if (!rightChalkActive)
+        if (!rightChalkActive && !isRightHolding)
         {
             currentRightStamina += chalkBonus;
             currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, baseMaxRightStamina + chalkBonus);
