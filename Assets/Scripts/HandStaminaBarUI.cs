@@ -88,7 +88,7 @@ public class HandStaminaBarUI : MonoBehaviour
             {
                 whiteBar.gameObject.SetActive(true);
 
-                float chalkPercent = chalkDuration > 0f ? Mathf.Clamp01(chalkTimeRemaining / chalkDuration) : 0f;
+                float chalkPercent = chalkDuration > 0f ? Mathf.Clamp01(chalkTimeRemaining / (chalkDuration * 2)) : 0f;
 
                 Color c = whiteImage.color;
 
