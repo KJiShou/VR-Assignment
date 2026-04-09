@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class StaminaManager : MonoBehaviour
 {
@@ -183,6 +185,7 @@ public class StaminaManager : MonoBehaviour
 
     public void UseLeftChalk()
     {
+        Debug.Log("UseLeftChalk()");
         if (!leftChalkActive)
         {
             currentLeftStamina += chalkBonus;
@@ -195,6 +198,7 @@ public class StaminaManager : MonoBehaviour
 
     public void UseRightChalk()
     {
+        Debug.Log("UseRightChalk()");
         if (!rightChalkActive)
         {
             currentRightStamina += chalkBonus;

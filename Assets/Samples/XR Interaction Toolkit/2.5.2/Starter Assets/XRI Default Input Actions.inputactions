@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "XRI Default Input Actions",
     "maps": [
         {
@@ -443,6 +444,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Velocity",
+                    "type": "Value",
+                    "id": "40606139-ba0a-413c-8492-3fe930ceca17",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -676,6 +686,17 @@
                     "action": "Grip Rotation",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f18b211a-a716-402b-8231-632d50bd6e2b",
+                    "path": "<XRController>{LeftHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Velocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -687,7 +708,7 @@
                     "name": "Select",
                     "type": "Button",
                     "id": "33754c03-48ec-46ef-9bc6-22ed6bfdd8e8",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -781,6 +802,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "db375b8c-dd3f-4cee-b331-e1bcc344ae9f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -946,6 +976,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d1740cf-b947-45b8-9b91-38704295eee2",
+                    "path": "<XRController>/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1239,6 +1280,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Velocity",
+                    "type": "Value",
+                    "id": "100f1ff3-0247-48c8-950f-24fb31de81e5",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1470,6 +1520,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Grip Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7f744e8-b3bc-4d8a-bc5b-c9d3d3f36e93",
+                    "path": "<XRController>{RightHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Velocity",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
