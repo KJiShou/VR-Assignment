@@ -64,7 +64,7 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "ccb35b49-777b-460f-bca8-3168c41cc779",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

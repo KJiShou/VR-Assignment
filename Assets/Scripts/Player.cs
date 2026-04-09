@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 
@@ -10,6 +11,11 @@ public class Player : MonoBehaviour
 {
     public XRRayInteractor leftRayInteractor;
     public XRRayInteractor rightRayInteractor;
+
+    public XRInteractorLineVisual leftLineVisual;
+    public XRInteractorLineVisual rightLineVisual;
+    public GameObject reticle;
+    public GameObject blockedReticle;
 
     public XRDirectInteractor leftDirectInteractor;
     public XRDirectInteractor rightDirectInteractor;
@@ -34,6 +40,8 @@ public class Player : MonoBehaviour
     private float _highestPointDuringFall;
     private bool _wasFallingLastFrame;
     private float _protectionTimer = 0f;
+
+    private bool _isWin = false;
 
     void Awake()
     {
@@ -152,6 +160,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "TopPoint")
         {
+            _isWin = true;
             if (leftRayInteractor != null && rightRayInteractor != null)
             {
                 leftRayInteractor.enabled = true;
@@ -197,10 +206,41 @@ public class Player : MonoBehaviour
 
     public void ToggleMenu()
     {
-        if (settingsPanel != null)
+        Debug.Log("<color=red>Left Hand Menu button pressed!</color>");
+
+        if (settingsPanel == null)
         {
-            bool isActive = settingsPanel.activeSelf;
-            settingsPanel.SetActive(!isActive);
+            Debug.LogWarning("ToggleMenu called, but settings panel is empty, please check Inspector.");
+            return;
+        }
+
+        bool isActive = settingsPanel.activeSelf;
+        bool newState = !isActive;
+
+        settingsPanel.SetActive(newState);
+
+        if (!_isWin)
+        {
+            if (leftRayInteractor != null) leftRayInteractor.enabled = newState;
+            if (rightRayInteractor != null) rightRayInteractor.enabled = newState;
+
+            if (leftLineVisual != null && rightLineVisual != null)
+            {
+                if (newState == true)
+                {
+                    leftLineVisual.reticle = null;
+                    leftLineVisual.blockedReticle = null;
+                    rightLineVisual.reticle = null;
+                    rightLineVisual.blockedReticle = null;
+                }
+                else
+                {
+                    leftLineVisual.reticle = reticle;
+                    leftLineVisual.blockedReticle = blockedReticle;
+                    rightLineVisual.reticle = reticle;
+                    rightLineVisual.blockedReticle = blockedReticle;
+                }
+            }
         }
     }
 

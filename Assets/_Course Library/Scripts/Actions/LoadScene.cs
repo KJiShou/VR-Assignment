@@ -9,22 +9,32 @@ public enum Stage
     Stage2,
 }
 
+[System.Serializable]
+public struct StageData
+{
+    public string stage;
+    public AudioClip bgm;
+}
 /// <summary>
 /// Load scene using name, or reload the active scene
 /// </summary>
 public class LoadScene : MonoBehaviour
 {
-    private Stage stage;
-    private void Start()
-    {
-        if(SceneManager.GetActiveScene().buildIndex == (int)Stage.Tutorial)
-        {
-            //AudioManager.Instance.
-        }
-    }
+    public StageData[] stages;
 
     public void LoadSceneUsingName(string sceneName)
     {
+        if(AudioManager.Instance != null)
+        {
+            foreach (var item in stages)
+            {
+                if (item.bgm != null && item.stage == sceneName)
+                {
+                    AudioManager.Instance.PlayAmbientSound(item.bgm);
+                }
+            }
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 
