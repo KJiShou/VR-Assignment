@@ -224,23 +224,23 @@ public class Player : MonoBehaviour
             if (leftRayInteractor != null) leftRayInteractor.enabled = newState;
             if (rightRayInteractor != null) rightRayInteractor.enabled = newState;
 
-            if (leftLineVisual != null && rightLineVisual != null)
-            {
-                if (newState == true)
-                {
-                    leftLineVisual.reticle = null;
-                    leftLineVisual.blockedReticle = null;
-                    rightLineVisual.reticle = null;
-                    rightLineVisual.blockedReticle = null;
-                }
-                else
-                {
-                    leftLineVisual.reticle = reticle;
-                    leftLineVisual.blockedReticle = blockedReticle;
-                    rightLineVisual.reticle = reticle;
-                    rightLineVisual.blockedReticle = blockedReticle;
-                }
-            }
+            //if (leftLineVisual != null && rightLineVisual != null)
+            //{
+            //    if (newState == true)
+            //    {
+            //        leftLineVisual.reticle = null;
+            //        leftLineVisual.blockedReticle = null;
+            //        rightLineVisual.reticle = null;
+            //        rightLineVisual.blockedReticle = null;
+            //    }
+            //    else
+            //    {
+            //        leftLineVisual.reticle = reticle;
+            //        leftLineVisual.blockedReticle = blockedReticle;
+            //        rightLineVisual.reticle = reticle;
+            //        rightLineVisual.blockedReticle = blockedReticle;
+            //    }
+            //}
         }
     }
 

@@ -22,6 +22,8 @@ public class ShakeDetector : MonoBehaviour
     [Tooltip("What action should do after shaking")]
     public UnityEvent onShakeTriggered;
 
+    public bool isDebug = false;
+
     private float _lastShakeTime = 0f;
 
     private void OnEnable()
@@ -58,7 +60,7 @@ public class ShakeDetector : MonoBehaviour
 
 #if UNITY_EDITOR
         // Pressing space directly trigger shake action, for testing purpose 
-        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current != null && isDebug && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             if (Time.time >= _lastShakeTime + cooldownTime)
             {
