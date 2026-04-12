@@ -101,7 +101,6 @@ public class ControllerHighlighter : MonoBehaviour
             yield return null;
         }
 
-        // 如果时间到了还是空的
         if (foundObj == null)
         {
             Debug.LogError($"<color=red>[Time Out Error] Already wait for {timeout} sec, model still haven't instantiate! Can't found {buttonName} !" +
