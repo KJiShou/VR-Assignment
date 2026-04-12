@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class ControllerHighlighter : MonoBehaviour
 {
-    private GameObject leftXButtonHighlight;
-    private GameObject rightAButtonHighlight;
-    private GameObject leftGripHighlight;
-    private GameObject rightGripHighlight;
-    private GameObject leftMenuButtonHighlight;
-    private GameObject leftThumbStickHighlight;
-    private GameObject rightThumbStickHighlight;
+    [SerializeField] GameObject leftXButtonHighlight;
+    [SerializeField] GameObject rightAButtonHighlight;
+    [SerializeField] GameObject leftGripHighlight;
+    [SerializeField] GameObject rightGripHighlight;
+    [SerializeField] GameObject leftMenuButtonHighlight;
+    [SerializeField] GameObject leftThumbStickHighlight;
+    [SerializeField] GameObject rightThumbStickHighlight;
 
     private HashSet<GameObject> activeHighlights = new HashSet<GameObject>();
     private Coroutine masterFlashRoutine;
@@ -21,13 +21,21 @@ public class ControllerHighlighter : MonoBehaviour
     [Tooltip("Time foe switching highlight from active to inactive")]
     public float inactiveInterval = 0.4f;
 
-    public void FlashLeftX() => StartCoroutine(WaitAndFlashRoutine("Left_X_Button_Highlight", obj => leftXButtonHighlight = obj));
-    public void FlashRightA() => StartCoroutine(WaitAndFlashRoutine("Right_A_Button_Highlight", obj => rightAButtonHighlight = obj));
-    public void FlashLeftGrip() => StartCoroutine(WaitAndFlashRoutine("Left_Grip_Highlight", obj => leftGripHighlight = obj));
-    public void FlashRightGrip() => StartCoroutine(WaitAndFlashRoutine("Right_Grip_Highlight", obj => rightGripHighlight = obj));
-    public void FlashLeftMenu() => StartCoroutine(WaitAndFlashRoutine("Left_Menu_Button_Highlight", obj => leftMenuButtonHighlight = obj));
-    public void FlashLeftThumbStick() => StartCoroutine(WaitAndFlashRoutine("Left_ThumbStick_Highlight", obj => leftThumbStickHighlight = obj));
-    public void FlashRightThumbStick() => StartCoroutine(WaitAndFlashRoutine("Right_ThumbStick_Highlight", obj => rightThumbStickHighlight = obj));
+    //public void FlashLeftX() => StartCoroutine(WaitAndFlashRoutine("Left_X_Button_Highlight", obj => leftXButtonHighlight = obj));
+    //public void FlashRightA() => StartCoroutine(WaitAndFlashRoutine("Right_A_Button_Highlight", obj => rightAButtonHighlight = obj));
+    //public void FlashLeftGrip() => StartCoroutine(WaitAndFlashRoutine("Left_Grip_Highlight", obj => leftGripHighlight = obj));
+    //public void FlashRightGrip() => StartCoroutine(WaitAndFlashRoutine("Right_Grip_Highlight", obj => rightGripHighlight = obj));
+    //public void FlashLeftMenu() => StartCoroutine(WaitAndFlashRoutine("Left_Menu_Button_Highlight", obj => leftMenuButtonHighlight = obj));
+    //public void FlashLeftThumbStick() => StartCoroutine(WaitAndFlashRoutine("Left_ThumbStick_Highlight", obj => leftThumbStickHighlight = obj));
+    //public void FlashRightThumbStick() => StartCoroutine(WaitAndFlashRoutine("Right_ThumbStick_Highlight", obj => rightThumbStickHighlight = obj));
+
+    public void FlashLeftX() => FlushRoutine(leftXButtonHighlight);
+    public void FlashRightA() => FlushRoutine(rightAButtonHighlight);
+    public void FlashLeftGrip() => FlushRoutine(leftGripHighlight);
+    public void FlashRightGrip() => FlushRoutine(rightGripHighlight);
+    public void FlashLeftMenu() => FlushRoutine(leftMenuButtonHighlight);
+    public void FlashLeftThumbStick() => FlushRoutine(leftThumbStickHighlight);
+    public void FlashRightThumbStick() => FlushRoutine(rightThumbStickHighlight);
 
     public void FlashBothGrips()
     {
@@ -39,18 +47,6 @@ public class ControllerHighlighter : MonoBehaviour
     {
         FlashLeftX();
         FlashRightA();
-    }
-
-    // Must attach this script at the parent of the objects that you want to find
-    private GameObject FindDeepChild(Transform parent, string childName)
-    {
-        foreach (Transform child in parent)
-        {
-            if (child.name == childName) return child.gameObject;
-            GameObject result = FindDeepChild(child, childName);
-            if (result != null) return result;
-        }
-        return null;
     }
 
     public void StopAllFlashing()
@@ -76,42 +72,9 @@ public class ControllerHighlighter : MonoBehaviour
         if (rightThumbStickHighlight) rightThumbStickHighlight.SetActive(false);
     }
 
-    // ==========================================
-    // Asynchronous Item Finding Coroutine with Timeout Protection
-    // ==========================================
-    private IEnumerator WaitAndFlashRoutine(string buttonName, System.Action<GameObject> saveFoundObject)
+    private void FlushRoutine(GameObject obj)
     {
-        GameObject foundObj = null;
-        float timeout = 3.0f; // Maximum wait for 3 sec
-        float timer = 0f;
-
-        // time not reach time out, then keep finding
-        while (timer < timeout)
-        {
-            foundObj = FindDeepChild(this.transform, buttonName);
-
-            if (foundObj != null)
-            {
-                break; // if found, directly break the loop
-            }
-
-            timer += Time.deltaTime;
-
-            // Wait for next frame
-            yield return null;
-        }
-
-        if (foundObj == null)
-        {
-            Debug.LogError($"<color=red>[Time Out Error] Already wait for {timeout} sec, model still haven't instantiate! Can't found {buttonName} !" +
-                $" Please check the prefab is correctly loaded or not!</color>");
-            yield break; // End coroutine
-        }
-
-        // Assign value to the variable
-        saveFoundObject?.Invoke(foundObj);
-
-        activeHighlights.Add(foundObj);
+        activeHighlights.Add(obj);
 
         if (masterFlashRoutine == null)
         {
