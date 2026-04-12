@@ -46,12 +46,7 @@ public class Player : MonoBehaviour
 
     private bool _isWin = false;
 
-    [SerializeField] GameObject leftHandController;
-    [SerializeField] TextMeshProUGUI winScreenTimeText;
-    private GameObject timeText;
-
-    private float currentTime = 0f;
-    private bool isTimerRunning = false;
+    [SerializeField] ClimbTimer _climbTimer;
 
     #region Monobehaviour Methods
     void Awake()
@@ -67,17 +62,11 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FindGameObject("ClimbTimer", obj => timeText = obj));
+        //StartCoroutine(FindGameObject("ClimbTimer", obj => timeText = obj));
     }
 
     private void Update()
     {
-
-        if (timeText != null && isTimerRunning)
-        {
-            currentTime += Time.deltaTime;
-            UpdateTimerDisplay();
-        }
 
         if (_protectionTimer > 0)
         {
@@ -88,9 +77,9 @@ public class Player : MonoBehaviour
         // not on floor and not climbing
         bool isClimbing = _climbProvider != null && _climbProvider.locomotionState == LocomotionState.Moving;
 
-        if (isClimbing && !_isWin && !isTimerRunning)
+        if (_climbTimer != null && isClimbing && !_isWin && !_climbTimer.isTimerRunning)
         {
-            StartClimbingTimer();
+            _climbTimer.StartClimbingTimer();
         }
 
         if (isClimbing && settingsPanel.activeSelf) 
@@ -137,7 +126,8 @@ public class Player : MonoBehaviour
         if (other.tag == "TopPoint")
         {
             _isWin = true;
-            StopClimbingTimer();
+            if (_climbTimer != null) _climbTimer.StopClimbingTimer();
+
             if (leftRayInteractor != null && rightRayInteractor != null)
             {
                 leftRayInteractor.enabled = true;
@@ -190,87 +180,44 @@ public class Player : MonoBehaviour
         }
     }
 
-    private GameObject FindDeepChild(Transform parent, string childName)
-    {
-        foreach (Transform child in parent)
-        {
-            if (child.name == childName) return child.gameObject;
-            GameObject result = FindDeepChild(child, childName);
-            if (result != null) return result;
-        }
-        return null;
-    }
+    //private void StartClimbingTimer()
+    //{
+    //    currentTime = 0f;
+    //    isTimerRunning = true;
+    //    Debug.Log("<color=cyan>Climbing timer start to count</color>");
+    //}
 
-    private IEnumerator FindGameObject(string objectName, System.Action<GameObject> saveFoundObject)
-    {
-        GameObject foundObj = null;
-        float timeout = 3.0f; // Maximum wait for 3 sec
-        float timer = 0f;
+    //private void StopClimbingTimer()
+    //{
+    //    isTimerRunning = false;
+    //    Debug.Log($"<color=cyan>Climbing timer stopped! Final use time: {GetFormattedTime()}</color>");
+    //}
 
-        // time not reach time out, then keep finding
-        while (timer < timeout)
-        {
-            foundObj = FindDeepChild(this.transform, objectName);
+    //private void ResumeTimer()
+    //{
+    //    isTimerRunning = true;
+    //}
 
-            if (foundObj != null)
-            {
-                break; // if found, directly break the loop
-            }
+    //private void UpdateTimerDisplay()
+    //{
+    //    if (watchTimeText != null && winScreenTimeText != null)
+    //    {
+    //        string text = GetFormattedTime();
+    //        //timeText.GetComponent<TextMeshProUGUI>().text = text;
+    //        watchTimeText.text = text;
+    //        winScreenTimeText.text = "Used Time: " + text;
+    //    }
+    //}
 
-            timer += Time.deltaTime;
-
-            // Wait for next frame
-            yield return null;
-        }
-
-        if (foundObj == null)
-        {
-            Debug.LogError($"<color=red>[Time Out Error] Already wait for {timeout} sec, model still haven't instantiate! Can't found {objectName} !" +
-                $" Please check the prefab is correctly loaded or not!</color>");
-            yield break; // End coroutine
-        }
-
-        // Assign value to the variable
-        saveFoundObject?.Invoke(foundObj);
-    }
-
-    private void StartClimbingTimer()
-    {
-        currentTime = 0f;
-        isTimerRunning = true;
-        Debug.Log("<color=cyan>Climbing timer start to count</color>");
-    }
-
-    private void StopClimbingTimer()
-    {
-        isTimerRunning = false;
-        Debug.Log($"<color=cyan>Climbing timer stopped! Final use time: {GetFormattedTime()}</color>");
-    }
-
-    private void ResumeTimer()
-    {
-        isTimerRunning = true;
-    }
-
-    private void UpdateTimerDisplay()
-    {
-        if (timeText != null && winScreenTimeText != null)
-        {
-            string text = GetFormattedTime();
-            timeText.GetComponent<TextMeshProUGUI>().text = text;
-            winScreenTimeText.text = "Used Time: " + text;
-        }
-    }
-
-    /// <summary>
-    /// Get the format time string
-    /// </summary>
-    /// <returns>time string 00:00.00</returns>
-    private string GetFormattedTime()
-    {
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        return time.ToString(@"mm\:ss\.ff");
-    }
+    ///// <summary>
+    ///// Get the format time string
+    ///// </summary>
+    ///// <returns>time string 00:00.00</returns>
+    //private string GetFormattedTime()
+    //{
+    //    TimeSpan time = TimeSpan.FromSeconds(currentTime);
+    //    return time.ToString(@"mm\:ss\.ff");
+    //}
     #endregion
 
     #region Public Methods
