@@ -2160,6 +2160,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isDebug: 0
 --- !u!1 &2221818344385630775
 GameObject:
   m_ObjectHideFlags: 0
@@ -4965,6 +4966,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isDebug: 0
 --- !u!1 &6979327782756555497
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,6 +5232,7 @@ MonoBehaviour:
   settingsPanel: {fileID: 7981150116658320039}
   deathFallDistance: 5
   respawnProtectionTime: 2
+  leftHandController: {fileID: 2055332251352769192}
 --- !u!114 &7194182836265072747
 MonoBehaviour:
   m_ObjectHideFlags: 0

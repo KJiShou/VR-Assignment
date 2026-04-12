@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4727322987208083002}
+  - {fileID: 1149762755918364481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6215715323321413778
@@ -122,3 +123,82 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &6975959905345350374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2023320033534737014}
+    m_Modifications:
+    - target: {fileID: 2090780832619065242, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_Name
+      value: ClimbTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237426561760530205, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_Name
+      value: casio_watch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0081
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0031
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54995a5c8cdc332499e6f83d1a448e36, type: 3}
+--- !u!4 &1149762755918364481 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8015089779786306983, guid: 54995a5c8cdc332499e6f83d1a448e36,
+    type: 3}
+  m_PrefabInstance: {fileID: 6975959905345350374}
+  m_PrefabAsset: {fileID: 0}
