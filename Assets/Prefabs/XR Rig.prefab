@@ -7094,6 +7094,16 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7521168060950816574, guid: 010b7be64597e504fa0ceb3c8e628494,
+        type: 3}
+      propertyPath: leftRayInteractor
+      value: 
+      objectReference: {fileID: 6868344278623520204}
+    - target: {fileID: 7521168060950816574, guid: 010b7be64597e504fa0ceb3c8e628494,
+        type: 3}
+      propertyPath: rightRayInteractor
+      value: 
+      objectReference: {fileID: 1312652216609947905}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
