@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 /// <summary>
 /// Fades a canvas over time using a coroutine and a canvas group
@@ -11,6 +12,9 @@ public class FadeCanvas : MonoBehaviour
     public float defaultDuration = 1.0f;
 
     public Coroutine CurrentRoutine { private set; get; } = null;
+
+    public XRRayInteractor leftRayInteractor;
+    public XRRayInteractor rightRayInteractor;
 
     private CanvasGroup canvasGroup = null;
     private Canvas canvas = null;
@@ -80,10 +84,13 @@ public class FadeCanvas : MonoBehaviour
     {
         Debug.Log("Start FadeRoutine");
         // if back screen, open block RayCast, prevent player interact with the scene
+
         if (targetAlpha > 0f)
         {
             canvas.enabled = true;
             canvasGroup.blocksRaycasts = true;
+            if (leftRayInteractor != null) leftRayInteractor.enabled = false;
+            if (rightRayInteractor != null) rightRayInteractor.enabled = false;
         }
 
         float elapsedTime = 0.0f;
@@ -100,6 +107,8 @@ public class FadeCanvas : MonoBehaviour
         {
             canvas.enabled = false;
             canvasGroup.blocksRaycasts = false;
+            if (leftRayInteractor != null) leftRayInteractor.enabled = true;
+            if (rightRayInteractor != null) rightRayInteractor.enabled = true;
         }
     }
 
