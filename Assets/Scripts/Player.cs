@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
     public bool IsWin => _isWin;
 
     [SerializeField] ClimbTimer _climbTimer;
+    [SerializeField] ClimbDataLogger _climbDataLogger;
 
     #region Monobehaviour Methods
     void Awake()
@@ -60,11 +62,6 @@ public class Player : MonoBehaviour
         {
             _fadeCanvas = fadeCanvas.GetComponent<FadeCanvas>();
         }
-    }
-
-    private void Start()
-    {
-        //StartCoroutine(FindGameObject("ClimbTimer", obj => timeText = obj));
     }
 
     private void Update()
@@ -127,14 +124,14 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "TopPoint")
         {
-            _isWin = true;
-            if (_climbTimer != null) _climbTimer.StopClimbingTimer();
-
+            if (_climbTimer != null && !_isWin) _climbTimer.StopClimbingTimer();
+            if (_climbDataLogger != null && !_isWin) _climbDataLogger.SaveClimbRecord(SceneManager.GetActiveScene().name, _climbTimer.GetFormattedTime());
             if (leftRayInteractor != null && rightRayInteractor != null)
             {
                 leftRayInteractor.enabled = true;
                 rightRayInteractor.enabled = true;
             }
+            _isWin = true;
         }
     }
     #endregion
@@ -181,45 +178,6 @@ public class Player : MonoBehaviour
             _fadeCanvas.StartFadeOut();
         }
     }
-
-    //private void StartClimbingTimer()
-    //{
-    //    currentTime = 0f;
-    //    isTimerRunning = true;
-    //    Debug.Log("<color=cyan>Climbing timer start to count</color>");
-    //}
-
-    //private void StopClimbingTimer()
-    //{
-    //    isTimerRunning = false;
-    //    Debug.Log($"<color=cyan>Climbing timer stopped! Final use time: {GetFormattedTime()}</color>");
-    //}
-
-    //private void ResumeTimer()
-    //{
-    //    isTimerRunning = true;
-    //}
-
-    //private void UpdateTimerDisplay()
-    //{
-    //    if (watchTimeText != null && winScreenTimeText != null)
-    //    {
-    //        string text = GetFormattedTime();
-    //        //timeText.GetComponent<TextMeshProUGUI>().text = text;
-    //        watchTimeText.text = text;
-    //        winScreenTimeText.text = "Used Time: " + text;
-    //    }
-    //}
-
-    ///// <summary>
-    ///// Get the format time string
-    ///// </summary>
-    ///// <returns>time string 00:00.00</returns>
-    //private string GetFormattedTime()
-    //{
-    //    TimeSpan time = TimeSpan.FromSeconds(currentTime);
-    //    return time.ToString(@"mm\:ss\.ff");
-    //}
     #endregion
 
     #region Public Methods

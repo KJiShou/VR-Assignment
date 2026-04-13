@@ -53,7 +53,7 @@ public class ClimbTimer : MonoBehaviour
     /// Get the format time string
     /// </summary>
     /// <returns>time string 00:00.00</returns>
-    private string GetFormattedTime()
+    public string GetFormattedTime()
     {
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         return time.ToString(@"mm\:ss\.ff");
