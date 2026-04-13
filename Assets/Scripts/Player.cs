@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     private bool _isWin = false;
 
+    public bool IsWin => _isWin;
+
     [SerializeField] ClimbTimer _climbTimer;
 
     #region Monobehaviour Methods

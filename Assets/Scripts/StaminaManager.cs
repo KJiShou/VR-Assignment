@@ -232,4 +232,13 @@ public class StaminaManager : MonoBehaviour
     {
         return rightChalkActive ? rightChalkTimer : 0f;
     }
+
+    public void ApplyDamageToBothHands(float damage)
+    {
+        currentLeftStamina -= damage;
+        currentRightStamina -= damage;
+
+        currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
+        currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
+    }
 }
