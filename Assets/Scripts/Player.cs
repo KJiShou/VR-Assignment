@@ -1,13 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Player : MonoBehaviour
 {
     public XRRayInteractor leftRayInteractor;
     public XRRayInteractor rightRayInteractor;
+
+    public XRInteractorLineVisual leftLineVisual;
+    public XRInteractorLineVisual rightLineVisual;
+    public GameObject reticle;
+    public GameObject blockedReticle;
 
     public XRDirectInteractor leftDirectInteractor;
     public XRDirectInteractor rightDirectInteractor;
@@ -17,6 +28,8 @@ public class Player : MonoBehaviour
     public GameObject fadeCanvas;
     private FadeCanvas _fadeCanvas;
     public float transitionTime = 2.0f;
+
+    public GameObject settingsPanel;
 
     [Header("Settings")]
     public float deathFallDistance = 5.0f; // Over this distance count as death
@@ -31,6 +44,13 @@ public class Player : MonoBehaviour
     private bool _wasFallingLastFrame;
     private float _protectionTimer = 0f;
 
+    private bool _isWin = false;
+
+    public bool IsWin => _isWin;
+
+    [SerializeField] ClimbTimer _climbTimer;
+
+    #region Monobehaviour Methods
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -42,17 +62,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        //StartCoroutine(FindGameObject("ClimbTimer", obj => timeText = obj));
+    }
+
     private void Update()
     {
-        if (leftDirectInteractor != null && leftRayInteractor != null)
-        {
-            leftRayInteractor.enabled = !leftDirectInteractor.hasSelection;
-        }
-
-        if (rightDirectInteractor != null && rightRayInteractor != null)
-        {
-            rightRayInteractor.enabled = !rightDirectInteractor.hasSelection;
-        }
 
         if (_protectionTimer > 0)
         {
@@ -62,6 +78,16 @@ public class Player : MonoBehaviour
 
         // not on floor and not climbing
         bool isClimbing = _climbProvider != null && _climbProvider.locomotionState == LocomotionState.Moving;
+
+        if (_climbTimer != null && isClimbing && !_isWin && !_climbTimer.isTimerRunning)
+        {
+            _climbTimer.StartClimbingTimer();
+        }
+
+        if (isClimbing && settingsPanel.activeSelf) 
+        {
+            ToggleMenu();
+        }
 
         if (_climbProvider != null && !isClimbing)
         {
@@ -97,6 +123,23 @@ public class Player : MonoBehaviour
         _wasFallingLastFrame = isFalling;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "TopPoint")
+        {
+            _isWin = true;
+            if (_climbTimer != null) _climbTimer.StopClimbingTimer();
+
+            if (leftRayInteractor != null && rightRayInteractor != null)
+            {
+                leftRayInteractor.enabled = true;
+                rightRayInteractor.enabled = true;
+            }
+        }
+    }
+    #endregion
+
+    #region Private Methods
     private void TriggerDeath()
     {
         Debug.Log("<color=red>[DEATH]</color> Fall distance greater than Death distance");
@@ -139,18 +182,47 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "TopPoint")
-        {
-            if (leftRayInteractor != null && rightRayInteractor != null)
-            {
-                leftRayInteractor.enabled = true;
-                rightRayInteractor.enabled = true;
-            }
-        }
-    }
+    //private void StartClimbingTimer()
+    //{
+    //    currentTime = 0f;
+    //    isTimerRunning = true;
+    //    Debug.Log("<color=cyan>Climbing timer start to count</color>");
+    //}
 
+    //private void StopClimbingTimer()
+    //{
+    //    isTimerRunning = false;
+    //    Debug.Log($"<color=cyan>Climbing timer stopped! Final use time: {GetFormattedTime()}</color>");
+    //}
+
+    //private void ResumeTimer()
+    //{
+    //    isTimerRunning = true;
+    //}
+
+    //private void UpdateTimerDisplay()
+    //{
+    //    if (watchTimeText != null && winScreenTimeText != null)
+    //    {
+    //        string text = GetFormattedTime();
+    //        //timeText.GetComponent<TextMeshProUGUI>().text = text;
+    //        watchTimeText.text = text;
+    //        winScreenTimeText.text = "Used Time: " + text;
+    //    }
+    //}
+
+    ///// <summary>
+    ///// Get the format time string
+    ///// </summary>
+    ///// <returns>time string 00:00.00</returns>
+    //private string GetFormattedTime()
+    //{
+    //    TimeSpan time = TimeSpan.FromSeconds(currentTime);
+    //    return time.ToString(@"mm\:ss\.ff");
+    //}
+    #endregion
+
+    #region Public Methods
     public void TeleportToWinScreen(Transform target)
     {
         StartCoroutine(Teleport(target));
@@ -186,4 +258,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ToggleMenu()
+    {
+        Debug.Log("<color=red>Left Hand Menu button pressed!</color>");
+
+        if (settingsPanel == null)
+        {
+            Debug.LogWarning("ToggleMenu called, but settings panel is empty, please check Inspector.");
+            return;
+        }
+
+        bool isActive = settingsPanel.activeSelf;
+        bool newState = !isActive;
+
+        settingsPanel.SetActive(newState);
+
+        if (!_isWin)
+        {
+            if (leftRayInteractor != null) leftRayInteractor.enabled = newState;
+            if (rightRayInteractor != null) rightRayInteractor.enabled = newState;
+        }
+    }
+    #endregion
 }

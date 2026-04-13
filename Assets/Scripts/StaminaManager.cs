@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class StaminaManager : MonoBehaviour
 {
@@ -46,7 +48,7 @@ public class StaminaManager : MonoBehaviour
     void Update()
     {
         UpdateChalkTimer();
-        DrainStaminaOverTime();
+        if(!(isLeftHolding && isRightHolding))DrainStaminaOverTime();
         RecoverStaminaOverTime();
         CheckAutoDrop();
     }
@@ -124,6 +126,14 @@ public class StaminaManager : MonoBehaviour
             currentRightStamina += rightRecovery * Time.deltaTime;
             currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
         }
+
+        if (isLeftHolding && isRightHolding)
+        {
+            currentLeftStamina += leftRecovery * Time.deltaTime;
+            currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
+            currentRightStamina += rightRecovery * Time.deltaTime;
+            currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
+        }
     }
 
     private void CheckAutoDrop()
@@ -175,7 +185,7 @@ public class StaminaManager : MonoBehaviour
 
     public void UseLeftChalk()
     {
-        if (!leftChalkActive)
+        if (!leftChalkActive && !isLeftHolding)
         {
             currentLeftStamina += chalkBonus;
             currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, baseMaxLeftStamina + chalkBonus);
@@ -187,7 +197,7 @@ public class StaminaManager : MonoBehaviour
 
     public void UseRightChalk()
     {
-        if (!rightChalkActive)
+        if (!rightChalkActive && !isRightHolding)
         {
             currentRightStamina += chalkBonus;
             currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, baseMaxRightStamina + chalkBonus);
@@ -221,5 +231,14 @@ public class StaminaManager : MonoBehaviour
     public float GetRightChalkTimeRemaining()
     {
         return rightChalkActive ? rightChalkTimer : 0f;
+    }
+
+    public void ApplyDamageToBothHands(float damage)
+    {
+        currentLeftStamina -= damage;
+        currentRightStamina -= damage;
+
+        currentLeftStamina = Mathf.Clamp(currentLeftStamina, 0f, GetCurrentLeftMaxStamina());
+        currentRightStamina = Mathf.Clamp(currentRightStamina, 0f, GetCurrentRightMaxStamina());
     }
 }

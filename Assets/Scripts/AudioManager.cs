@@ -15,8 +15,6 @@ public class AudioManager : MonoBehaviour
     private const string PREF_AMBIENT_VOL = "AmbientVolume_Pref";
     private const string PREF_SFX_VOL = "SFXVolume_Pref";
 
-    [SerializeField] AudioClip mainMenuBGM = null;
-
     private void Awake()
     {
         if (Instance == null)
@@ -27,23 +25,6 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Start()
-    {
-        // If not found playerpref key, default set as 1
-        float savedMaster = PlayerPrefs.GetFloat(PREF_MASTER_VOL, 1f);
-        float savedAmbient = PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
-        float savedSFX = PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
-
-        SetMasterVolume(savedMaster);
-        SetAmbientVolume(savedAmbient);
-        SetSFXVolume(savedSFX);
-
-        if (mainMenuBGM != null)
-        {
-            PlayAmbientSound(mainMenuBGM);
         }
     }
 
@@ -114,6 +95,6 @@ public class AudioManager : MonoBehaviour
     }
 
     public float GetSavedMasterVolume() => PlayerPrefs.GetFloat(PREF_MASTER_VOL, 1f);
-    public float GetSavedBGMVolume() => PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
+    public float GetSavedAmbientVolume() => PlayerPrefs.GetFloat(PREF_AMBIENT_VOL, 1f);
     public float GetSavedSFXVolume() => PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
 }

@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "XR Device Controller Controls",
     "maps": [
         {
@@ -63,7 +64,7 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "ccb35b49-777b-460f-bca8-3168c41cc779",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -72,7 +73,7 @@
                     "name": "Primary 2D Axis Click",
                     "type": "Button",
                     "id": "22416e35-4897-43a8-b712-74381678af80",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

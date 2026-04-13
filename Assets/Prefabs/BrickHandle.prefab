@@ -229,17 +229,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 981e1e0c909557840b120e600d8a72a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.788
+      value: 0.44636
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 981e1e0c909557840b120e600d8a72a4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.456
+      value: 1.90683
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 981e1e0c909557840b120e600d8a72a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1792301
+      value: 5.49
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 981e1e0c909557840b120e600d8a72a4,
         type: 3}
@@ -373,15 +373,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 981e1e0c909557840b120e600d8a72a4,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3405394238547157011}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 981e1e0c909557840b120e600d8a72a4,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1620261446061382919}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 981e1e0c909557840b120e600d8a72a4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -4993758546309231623}
   m_SourcePrefab: {fileID: 100100000, guid: 981e1e0c909557840b120e600d8a72a4, type: 3}
 --- !u!23 &6993431526274906653 stripped
 MeshRenderer:
@@ -548,33 +540,6 @@ MonoBehaviour:
       m_AllowFreeYMovement: 1
       m_AllowFreeZMovement: 0
     m_Variable: {fileID: 0}
---- !u!114 &3405394238547157011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8918491794730011681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea58595c6bfb2f4a93d74a952871ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Feedback.SimpleAudioFeedback
-  m_InteractorSourceObject: {fileID: 0}
-  m_AudioSource: {fileID: 0}
-  m_PlaySelectEntered: 1
-  m_SelectEnteredClip: {fileID: 8300000, guid: d727703712b36426db75d0e99085a350, type: 3}
-  m_PlaySelectExited: 0
-  m_SelectExitedClip: {fileID: 0}
-  m_PlaySelectCanceled: 0
-  m_SelectCanceledClip: {fileID: 0}
-  m_PlayHoverEntered: 0
-  m_HoverEnteredClip: {fileID: 0}
-  m_PlayHoverExited: 0
-  m_HoverExitedClip: {fileID: 0}
-  m_PlayHoverCanceled: 0
-  m_HoverCanceledClip: {fileID: 0}
-  m_AllowHoverAudioWhileSelecting: 0
 --- !u!114 &1620261446061382919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,16 +552,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03b53f8d9c365f41b4af1293dab9845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClimbDebug
---- !u!114 &-4993758546309231623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8918491794730011681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d3ac57f95d66346bfbec1becf23947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClimbObject
-  reducedStamina: 1
