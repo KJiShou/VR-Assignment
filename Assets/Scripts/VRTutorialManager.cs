@@ -32,6 +32,7 @@ public class VRTutorialManager : MonoBehaviour
     // prevent player press the key in same time
     private bool isStepCompleting = false;
 
+    public bool isDebug = false;
     private void Start()
     {
         if (steps == null || steps.Length == 0) return;
@@ -47,7 +48,7 @@ public class VRTutorialManager : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isDebug)
             PassCurrentStep(steps[currentIndex].stepId);
 #endif
     }
