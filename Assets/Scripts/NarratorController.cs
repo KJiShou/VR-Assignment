@@ -35,6 +35,8 @@ public class NarratorController : MonoBehaviour
     [Tooltip("Delay time for after playing resume sound")]
     public float delayAfterResumeSound = 1.0f;
 
+    private Coroutine currentInterruptRoutine = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -44,6 +46,8 @@ public class NarratorController : MonoBehaviour
         interruptAudioSource.spatialBlend = 1f;
         interruptAudioSource.rolloffMode = AudioRolloffMode.Linear;
         interruptAudioSource.playOnAwake = false;
+        interruptAudioSource.spatialize = true;
+        interruptAudioSource.spatializePostEffects = true;
     }
 
     public void PlayAudioClip(int step)
@@ -96,9 +100,28 @@ public class NarratorController : MonoBehaviour
     // ==========================================
     public void PlayInterruptSound(AudioClip specialClip)
     {
-        if (isInterrupted) return;
+        // if (isInterrupted) return;
 
-        StartCoroutine(HandleInterruption(specialClip));
+        if (currentInterruptRoutine != null)
+        {
+            StopCoroutine(currentInterruptRoutine);
+        }
+
+        currentInterruptRoutine = StartCoroutine(HandleInterruption(specialClip));
+    }
+
+    public void InterruptSound()
+    {
+        if (currentInterruptRoutine != null)
+        {
+            StopCoroutine(currentInterruptRoutine);
+            currentInterruptRoutine = null;
+        }
+
+        isInterrupted = false;
+        interruptAudioSource.Stop();
+
+        narratorSound.UnPause();
     }
 
     private IEnumerator HandleInterruption(AudioClip specialClip)
@@ -111,6 +134,7 @@ public class NarratorController : MonoBehaviour
             narratorSound.Pause();
         }
 
+        interruptAudioSource.Stop();
         interruptAudioSource.clip = specialClip;
         interruptAudioSource.Play();
 
@@ -124,6 +148,7 @@ public class NarratorController : MonoBehaviour
 
         if (resumeClip != null && !clipIsEnd)
         {
+            interruptAudioSource.Stop();
             interruptAudioSource.clip = resumeClip;
 
             interruptAudioSource.Play();
@@ -138,8 +163,8 @@ public class NarratorController : MonoBehaviour
 
         // Back to main audio source progress
         narratorSound.UnPause();
-
         // Unlock
         isInterrupted = false;
+        currentInterruptRoutine = null;
     }
 }
