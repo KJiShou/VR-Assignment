@@ -11,6 +11,8 @@ public class FadeCanvas : MonoBehaviour
     [Tooltip("The speed at which the canvas fades")]
     public float defaultDuration = 1.0f;
 
+    [SerializeField] Player player;
+
     public Coroutine CurrentRoutine { private set; get; } = null;
 
     public XRRayInteractor leftRayInteractor;
@@ -89,8 +91,11 @@ public class FadeCanvas : MonoBehaviour
         {
             canvas.enabled = true;
             canvasGroup.blocksRaycasts = true;
-            if (leftRayInteractor != null) leftRayInteractor.enabled = false;
-            if (rightRayInteractor != null) rightRayInteractor.enabled = false;
+            if (player != null && player.IsWin)
+            {
+                if (leftRayInteractor != null) leftRayInteractor.enabled = false;
+                if (rightRayInteractor != null) rightRayInteractor.enabled = false;
+            }
         }
 
         float elapsedTime = 0.0f;
@@ -107,8 +112,11 @@ public class FadeCanvas : MonoBehaviour
         {
             canvas.enabled = false;
             canvasGroup.blocksRaycasts = false;
-            if (leftRayInteractor != null) leftRayInteractor.enabled = true;
-            if (rightRayInteractor != null) rightRayInteractor.enabled = true;
+            if (player != null && player.IsWin)
+            {
+                if (leftRayInteractor != null) leftRayInteractor.enabled = true;
+                if (rightRayInteractor != null) rightRayInteractor.enabled = true;
+            }
         }
     }
 

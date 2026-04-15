@@ -5,8 +5,8 @@ public class FallingObjectSpawner : MonoBehaviour
 {
     public static FallingObjectSpawner Instance { get; private set; }
 
-    [Header("Prefab")]
-    public GameObject fallingObjectPrefab;
+    [Header("Prefab List")]
+    public List<GameObject> fallingObjectPrefabs = new();
 
     [Header("Spawn Settings")]
     public float spawnInterval = 2f;
@@ -18,6 +18,7 @@ public class FallingObjectSpawner : MonoBehaviour
     [Header("Target")]
     public Transform playerTransform;
     public Player player;
+    public StaminaManager staminaManager;
 
     [Header("Auto Start")]
     public bool autoStartOnAwake = true;
@@ -44,6 +45,11 @@ public class FallingObjectSpawner : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        FindStaminaManager();
+    }
+
     void Update()
     {
         if (!_isSpawning) return;
@@ -56,29 +62,16 @@ public class FallingObjectSpawner : MonoBehaviour
 
         if (playerTransform == null)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj == null)
-            {
-                CharacterController cc = FindFirstObjectByType<CharacterController>();
-                if (cc != null)
-                {
-                    playerObj = cc.gameObject;
-                }
-            }
-            if (playerObj != null)
-            {
-                playerTransform = playerObj.transform;
-                player = playerObj.GetComponent<Player>();
-                Debug.Log("[FallingObjectSpawner] Player found: " + playerObj.name);
-            }
-            else
-            {
-                return;
-            }
+            FindPlayer();
+        }
+
+        if (staminaManager == null)
+        {
+            FindStaminaManager();
         }
 
         _spawnTimer += Time.deltaTime;
-        if (_spawnTimer >= spawnInterval)
+        if (_spawnTimer >= spawnInterval && IsPlayerClimbing())
         {
             _spawnTimer = 0f;
             SpawnObject();
@@ -87,21 +80,68 @@ public class FallingObjectSpawner : MonoBehaviour
         UpdateActiveObjects();
     }
 
+    private void FindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj == null)
+        {
+            CharacterController cc = FindFirstObjectByType<CharacterController>();
+            if (cc != null)
+            {
+                playerObj = cc.gameObject;
+            }
+        }
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+            player = playerObj.GetComponent<Player>();
+            Debug.Log("[FallingObjectSpawner] Player found: " + playerObj.name);
+        }
+    }
+
+    private void FindStaminaManager()
+    {
+        if (staminaManager == null)
+        {
+            staminaManager = FindFirstObjectByType<StaminaManager>();
+        }
+    }
+
+    private bool IsPlayerClimbing()
+    {
+        return staminaManager != null
+            && (staminaManager.isLeftHolding || staminaManager.isRightHolding);
+    }
+
     private void InitializePool()
     {
-        if (fallingObjectPrefab == null) return;
+        if (fallingObjectPrefabs == null || fallingObjectPrefabs.Count == 0)
+        {
+            Debug.LogWarning("[FallingObjectSpawner] No falling object prefabs assigned!");
+            return;
+        }
 
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = CreateNewObject();
-            obj.SetActive(false);
-            _pool.Enqueue(obj);
+            if (obj != null)
+            {
+                obj.SetActive(false);
+                _pool.Enqueue(obj);
+            }
         }
     }
 
     private GameObject CreateNewObject()
     {
-        GameObject obj = Instantiate(fallingObjectPrefab, Vector3.zero, Quaternion.identity);
+        if (fallingObjectPrefabs == null || fallingObjectPrefabs.Count == 0)
+        {
+            Debug.LogWarning("[FallingObjectSpawner] No falling object prefabs assigned!");
+            return null;
+        }
+
+        GameObject prefab = fallingObjectPrefabs[Random.Range(0, fallingObjectPrefabs.Count)];
+        GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
         obj.name = "FallingObject_Pooled";
         return obj;
     }
@@ -116,10 +156,7 @@ public class FallingObjectSpawner : MonoBehaviour
         obj.SetActive(true);
 
         FallingObject fo = obj.GetComponent<FallingObject>();
-        if (fo != null)
-        {
-            fo.Reset();
-        }
+        fo?.Reset();
     }
 
     private GameObject GetFromPool()
