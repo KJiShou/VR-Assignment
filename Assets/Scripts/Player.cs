@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
 
         settingsPanel.SetActive(newState);
 
-        if (!_isWin)
+        if (!_isWin && SceneManager.GetActiveScene().name != "Guide")
         {
             if (leftRayInteractor != null) leftRayInteractor.enabled = newState;
             if (rightRayInteractor != null) rightRayInteractor.enabled = newState;
