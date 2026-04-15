@@ -52,13 +52,17 @@ public class Player : MonoBehaviour
     [SerializeField] ClimbTimer _climbTimer;
     [SerializeField] ClimbDataLogger _climbDataLogger;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _fallingClip;
+
     #region Monobehaviour Methods
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         _climbProvider = GetComponentInChildren<ClimbProvider>();
+        _audioSource = GetComponent<AudioSource>();
 
-        if(fadeCanvas != null)
+        if (fadeCanvas != null)
         {
             _fadeCanvas = fadeCanvas.GetComponent<FadeCanvas>();
         }
@@ -140,6 +144,7 @@ public class Player : MonoBehaviour
     private void TriggerDeath()
     {
         Debug.Log("<color=red>[DEATH]</color> Fall distance greater than Death distance");
+        if (_fallingClip != null) _audioSource.PlayOneShot(_fallingClip);
         _wasFallingLastFrame = false;
         _protectionTimer = respawnProtectionTime;
 
