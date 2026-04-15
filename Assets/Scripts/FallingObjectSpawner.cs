@@ -5,8 +5,8 @@ public class FallingObjectSpawner : MonoBehaviour
 {
     public static FallingObjectSpawner Instance { get; private set; }
 
-    [Header("Prefab")]
-    public GameObject fallingObjectPrefab;
+    [Header("Prefab List")]
+    public List<GameObject> fallingObjectPrefabs = new();
 
     [Header("Spawn Settings")]
     public float spawnInterval = 2f;
@@ -89,19 +89,33 @@ public class FallingObjectSpawner : MonoBehaviour
 
     private void InitializePool()
     {
-        if (fallingObjectPrefab == null) return;
+        if (fallingObjectPrefabs == null || fallingObjectPrefabs.Count == 0)
+        {
+            Debug.LogWarning("[FallingObjectSpawner] No falling object prefabs assigned!");
+            return;
+        }
 
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = CreateNewObject();
-            obj.SetActive(false);
-            _pool.Enqueue(obj);
+            if (obj != null)
+            {
+                obj.SetActive(false);
+                _pool.Enqueue(obj);
+            }
         }
     }
 
     private GameObject CreateNewObject()
     {
-        GameObject obj = Instantiate(fallingObjectPrefab, Vector3.zero, Quaternion.identity);
+        if (fallingObjectPrefabs == null || fallingObjectPrefabs.Count == 0)
+        {
+            Debug.LogWarning("[FallingObjectSpawner] No falling object prefabs assigned!");
+            return null;
+        }
+
+        GameObject prefab = fallingObjectPrefabs[Random.Range(0, fallingObjectPrefabs.Count)];
+        GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
         obj.name = "FallingObject_Pooled";
         return obj;
     }
@@ -116,10 +130,7 @@ public class FallingObjectSpawner : MonoBehaviour
         obj.SetActive(true);
 
         FallingObject fo = obj.GetComponent<FallingObject>();
-        if (fo != null)
-        {
-            fo.Reset();
-        }
+        fo?.Reset();
     }
 
     private GameObject GetFromPool()
