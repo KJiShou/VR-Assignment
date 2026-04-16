@@ -23198,6 +23198,11 @@ PrefabInstance:
       propertyPath: onShakeTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1390551430}
+    - target: {fileID: 6032600986054929774, guid: 61d3fe46f5e1e3f4a95b61b085a3ed1c,
+        type: 3}
+      propertyPath: m_CameraYOffset
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6450103864134467783, guid: 61d3fe46f5e1e3f4a95b61b085a3ed1c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

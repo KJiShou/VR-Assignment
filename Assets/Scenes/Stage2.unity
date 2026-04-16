@@ -1067,6 +1067,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6450103864134467783, guid: 61d3fe46f5e1e3f4a95b61b085a3ed1c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1062951891}
+    - target: {fileID: 6450103864134467783, guid: 61d3fe46f5e1e3f4a95b61b085a3ed1c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneUsingName
+      objectReference: {fileID: 0}
     - target: {fileID: 6979327782756555497, guid: 61d3fe46f5e1e3f4a95b61b085a3ed1c,
         type: 3}
       propertyPath: m_Name
@@ -1838,7 +1848,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
