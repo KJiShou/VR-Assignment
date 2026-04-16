@@ -24,6 +24,7 @@ public class LoadScene : MonoBehaviour
 
     public void LoadNextScene()
     {
+        Debug.Log("LoadNextScene()");
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadSceneAsync((currentScene.buildIndex + 1) % SceneManager.sceneCount);
     }

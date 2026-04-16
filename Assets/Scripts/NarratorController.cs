@@ -46,8 +46,8 @@ public class NarratorController : MonoBehaviour
         interruptAudioSource.spatialBlend = 1f;
         interruptAudioSource.rolloffMode = AudioRolloffMode.Linear;
         interruptAudioSource.playOnAwake = false;
-        interruptAudioSource.spatialize = true;
-        interruptAudioSource.spatializePostEffects = true;
+        //interruptAudioSource.spatialize = true;
+        //interruptAudioSource.spatializePostEffects = true;
     }
 
     public void PlayAudioClip(int step)
