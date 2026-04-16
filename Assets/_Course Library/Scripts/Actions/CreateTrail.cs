@@ -7,6 +7,7 @@
 public class CreateTrail : MonoBehaviour
 {
     public GameObject trailPrefab = null;
+    public Transform parentTrans;
 
     private float width = 0.05f;
     private Color color = Color.white;
@@ -17,7 +18,7 @@ public class CreateTrail : MonoBehaviour
     {
         if (!currentTrail)
         {
-            currentTrail = Instantiate(trailPrefab, transform.position, transform.rotation, transform);
+            currentTrail = Instantiate(trailPrefab, transform.position, transform.rotation, parentTrans != null ? parentTrans : transform);
             ApplySettings(currentTrail);
         }
     }
@@ -47,5 +48,10 @@ public class CreateTrail : MonoBehaviour
     public void SetColor(Color value)
     {
         color = value;
+    }
+
+    public void SetColor()
+    {
+        color = Color.blue;
     }
 }
