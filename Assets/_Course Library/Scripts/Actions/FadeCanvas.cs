@@ -39,6 +39,10 @@ public class FadeCanvas : MonoBehaviour
     public void StartFadeIn()
     {
         StopAllCoroutines();
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
         // CurrentRoutine = StartCoroutine(FadeIn(defaultDuration));
         CurrentRoutine = StartCoroutine(FadeRoutine(canvasGroup.alpha, 1.0f, defaultDuration));
     }
@@ -46,6 +50,10 @@ public class FadeCanvas : MonoBehaviour
     public void StartFadeOut()
     {
         StopAllCoroutines();
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
         // CurrentRoutine = StartCoroutine(FadeOut(defaultDuration));
         CurrentRoutine = StartCoroutine(FadeRoutine(canvasGroup.alpha, 0.0f, defaultDuration));
     }
@@ -53,6 +61,10 @@ public class FadeCanvas : MonoBehaviour
     public void QuickFadeIn()
     {
         StopAllCoroutines();
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
         // CurrentRoutine = StartCoroutine(FadeIn(quickFadeDuration));
         CurrentRoutine = StartCoroutine(FadeRoutine(canvasGroup.alpha, 1.0f, quickFadeDuration));
     }
@@ -60,6 +72,10 @@ public class FadeCanvas : MonoBehaviour
     public void QuickFadeOut()
     {
         StopAllCoroutines();
+        if (canvasGroup == null)
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
         // CurrentRoutine = StartCoroutine(FadeOut(quickFadeDuration));
         CurrentRoutine = StartCoroutine(FadeRoutine(canvasGroup.alpha, 0.0f, quickFadeDuration));
     }
