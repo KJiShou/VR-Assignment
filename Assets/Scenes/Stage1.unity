@@ -2741,6 +2741,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8798f854abc02dd409014ccfaa9d1ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!114 &230896006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8159671139676659423, guid: 61d3fe46f5e1e3f4a95b61b085a3ed1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 230896004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &232601378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3731,7 +3743,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24994,6 +25006,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1532301948}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1532301951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5351708728052788542, guid: 9f09e3faa74466e49a67c50f760abb31,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532301948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1532766899 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -831234887728671985, guid: 56ebffecb919dd04aad02e0534526008,
@@ -33826,6 +33850,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: =====MANAGER=====
       objectReference: {fileID: 0}
+    - target: {fileID: 8025608532131684299, guid: b6ae79f4246c0cc41ae43310e26ed288,
+        type: 3}
+      propertyPath: watchTimeText
+      value: 
+      objectReference: {fileID: 230896006}
+    - target: {fileID: 8025608532131684299, guid: b6ae79f4246c0cc41ae43310e26ed288,
+        type: 3}
+      propertyPath: winScreenTimeText
+      value: 
+      objectReference: {fileID: 1532301951}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
