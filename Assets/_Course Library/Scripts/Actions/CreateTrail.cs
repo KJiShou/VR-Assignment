@@ -7,7 +7,9 @@
 public class CreateTrail : MonoBehaviour
 {
     public GameObject trailPrefab = null;
-    public Transform parentTrans;
+
+    [Header("Pen tip position")]
+    public Transform penTip;
 
     private float width = 0.05f;
     private Color color = Color.white;
@@ -18,7 +20,7 @@ public class CreateTrail : MonoBehaviour
     {
         if (!currentTrail)
         {
-            currentTrail = Instantiate(trailPrefab, transform.position, transform.rotation, parentTrans != null ? parentTrans : transform);
+            currentTrail = Instantiate(trailPrefab, penTip.position, penTip.rotation, penTip);
             ApplySettings(currentTrail);
         }
     }
