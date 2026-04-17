@@ -10,6 +10,8 @@ public class LeaderboardUI : MonoBehaviour
     public ClimbDataLogger dataManager;
     List<ClimbRecord> currentMapHistory = new List<ClimbRecord>();
 
+    public int numOfResult = 4;
+
     [SerializeField] GameObject rankPrefab;
     [SerializeField] Transform prefabParent;
 
@@ -27,7 +29,7 @@ public class LeaderboardUI : MonoBehaviour
         // Take(5): Only get top 5
         var topFiveRecords = currentMapHistory
             .OrderBy(record => record.TimeSpent)
-            .Take(5)
+            .Take(numOfResult)
             .ToList();
 
         int i = 1;
@@ -41,7 +43,7 @@ public class LeaderboardUI : MonoBehaviour
 
             rankText.text = $"#{i}";
             usedTime.text = record.TimeSpent;
-            dateTime.text = $"{record.Date} {record.Timestamp}";
+            dateTime.text = $"{record.Date}\n{record.Timestamp}";
 
             switch (i) 
             {
