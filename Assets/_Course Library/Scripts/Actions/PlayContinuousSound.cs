@@ -15,12 +15,12 @@ public class PlayContinuousSound : MonoBehaviour
     [Tooltip("The volume of the sound")]
     public float volume = 1.0f;
 
-    private AudioSource audioSource = null;
+    public AudioSource audioSource = null;
     private MonoBehaviour currentOwner = null;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         audioSource.volume = volume;
     }
 

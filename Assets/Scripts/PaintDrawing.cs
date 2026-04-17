@@ -1,83 +1,179 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class PaintDrawing : MonoBehaviour
 {
-    public GameObject linePrefab; // 预制体必须带有 LineRenderer，且 Use World Space 设为 False
-    public Transform penTip;      // 笔尖
+    [Header("Core References")]
+    [Tooltip("Drag paint brush object components")]
+    public XRGrabInteractable grabInteractable;
+    public GameObject linePrefab;
     public LayerMask canvasLayer;
+
+    [Header("Paint Brush Settings")]
+    public float lineWidth = 0.01f;
+    public float minDistance = 0.005f;
+
+    [Tooltip("XR Rig Main Camera")]
+    public Transform playerCamera;
+
+    public PlayContinuousSound playContinuousSound;
 
     private LineRenderer currentLine;
     private List<Vector3> points = new List<Vector3>();
-    private Transform currentCanvas;
 
-    private float width = 0.02f;
-    private Color color = Color.white;
+    private bool isTriggerPressed = false; 
+    private Transform currentCanvas;   
+    private Collider currentCanvasCollider;
 
-    public void StartTrail()
+    private void OnEnable()
     {
-        RaycastHit hit;
-        // 1. 射线检测确定画布
-        if (Physics.Raycast(penTip.position, penTip.forward, out hit, 0.5f, canvasLayer))
+        if (grabInteractable != null)
         {
-            Debug.Log("<color=green>【成功】射线击中画布！开始生成笔迹。</color>");
-            currentCanvas = hit.transform;
-
-            // 2. 生成线条并将其设为画布的子物体
-            GameObject lineObj = Instantiate(linePrefab, hit.point, Quaternion.identity, currentCanvas);
-            currentLine = lineObj.GetComponent<LineRenderer>();
-
-            if (currentLine == null)
-            {
-                Debug.LogError("【致命错误】你的 linePrefab 上没有挂载 LineRenderer 组件！");
-                return;
-            }
-
-            // [极其关键] 强制关闭世界坐标，使用本地坐标绘制
-            currentLine.useWorldSpace = false;
-
-            points.Clear();
-            AddPoint();
+            grabInteractable.activated.AddListener(OnTriggerPulled);
+            grabInteractable.deactivated.AddListener(OnTriggerReleased);
         }
         else
         {
-            Debug.LogWarning("【失败】射线没有打中画布！请检查：1.画布有Collider吗？2.LayerMask对吗？3.笔尖蓝色箭头朝向对吗？");
+            Debug.LogError("Please assign  paint brush XRGrabInteractable to PaintDrawing.cs");
         }
     }
 
-    public void Update()
+    private void OnDisable()
     {
-        if (currentLine != null)
+        if (grabInteractable != null)
         {
-            AddPoint();
+            grabInteractable.activated.RemoveListener(OnTriggerPulled);
+            grabInteractable.deactivated.RemoveListener(OnTriggerReleased);
         }
     }
 
-    private void AddPoint()
+    private void OnTriggerPulled(ActivateEventArgs args)
     {
-        RaycastHit hit;
-        // 核心升级：Update 里也使用射线检测。
-        // 这样无论你的手腕怎么抖，或者笔尖戳进了画布多深，
-        // 我们永远只取射线在“画布表面”的碰撞点！
-        if (Physics.Raycast(penTip.position, penTip.forward, out hit, 0.5f, canvasLayer))
+        isTriggerPressed = true;
+    }
+
+    private void OnTriggerReleased(DeactivateEventArgs args)
+    {
+        isTriggerPressed = false;
+        EndTrail();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (((1 << other.gameObject.layer) & canvasLayer) != 0)
         {
-            // 防穿模终极武器：将点沿着画布法线（往外）偏移 1 毫米，确保线永远浮在表面！
-            Vector3 offsetPoint = hit.point + (hit.normal * 0.001f);
+            currentCanvas = other.transform;
+            currentCanvasCollider = other;
+        }
+    }
 
-            // 转换为本地坐标
-            Vector3 localPos = currentCanvas.InverseTransformPoint(offsetPoint);
+    private void OnTriggerExit(Collider other)
+    {
+        if (currentCanvas != null && other.transform == currentCanvas)
+        {
+            currentCanvas = null;
+            currentCanvasCollider = null;
+            EndTrail();
+        }
+    }
 
-            if (points.Count == 0 || Vector3.Distance(points[points.Count - 1], localPos) > 0.005f)
+    private void Update()
+    {
+        // If pressing trigger AND pen tip touching canvas
+        if (isTriggerPressed && currentCanvas != null && currentCanvasCollider != null)
+        {
+            // Is drawing at front of canvas
+            if (IsCameraOnFrontSide())
             {
-                points.Add(localPos);
-                currentLine.positionCount = points.Count;
-                currentLine.SetPosition(points.Count - 1, localPos);
+                if (currentLine == null)
+                {
+                    StartTrail();
+                }
+                AddPoint(0.002f);
+            }
+            else
+            {
+                if (currentLine == null)
+                {
+                    StartTrail();
+                }
+                AddPoint(0.004f);
+            }
+            if (!playContinuousSound.audioSource.isPlaying)
+            {
+                playContinuousSound.Play();
             }
         }
     }
 
-    public void EndTrail()
+    private bool IsCameraOnFrontSide()
+    {
+        if (playerCamera == null)
+        {
+            Debug.LogWarning("Haven't assign Player Camera!");
+            return true;
+        }
+
+        // Canvas to camera direction
+        Vector3 directionToCamera = playerCamera.position - currentCanvas.position;
+
+        // Canvas front vector
+        Vector3 canvasForward = currentCanvas.up;
+
+        return Vector3.Dot(canvasForward, directionToCamera) > -0.01f;
+    }
+
+    private bool IsPenOnFrontSide()
+    {
+        Vector3 directionToPen = transform.position - currentCanvas.position;
+
+        Vector3 canvasForward = currentCanvas.up;
+
+        float dotProduct = Vector3.Dot(canvasForward, directionToPen);
+
+        return dotProduct > -0.01f;
+    }
+
+    private void StartTrail()
+    {
+        GameObject lineObj = Instantiate(linePrefab, currentCanvas);
+        currentLine = lineObj.GetComponent<LineRenderer>();
+        currentLine.useWorldSpace = false;
+        currentLine.startWidth = lineWidth;
+        currentLine.endWidth = lineWidth;
+        points.Clear();
+    }
+
+    private void AddPoint(float offset)
+    {
+        Vector3 canvasNormal = currentCanvas.up;
+
+        Plane canvasPlane = new Plane(canvasNormal, currentCanvas.position);
+
+        // Stick the pen tip coordinate on the plane
+        Vector3 surfacePoint = canvasPlane.ClosestPointOnPlane(transform.position);
+
+        // Prevent Z-fighting
+        Vector3 offsetPoint = surfacePoint + (canvasNormal * offset);
+
+        Vector3 localPos = currentCanvas.InverseTransformPoint(offsetPoint);
+
+        if (points.Count == 0 || Vector3.Distance(points[points.Count - 1], localPos) > minDistance)
+        {
+            points.Add(localPos);
+            currentLine.positionCount = points.Count;
+            currentLine.SetPosition(points.Count - 1, localPos);
+        }
+    }
+
+    private void EndTrail()
     {
         currentLine = null;
+        if (playContinuousSound.audioSource.isPlaying)
+        {
+            playContinuousSound.Pause();
+        }
     }
 }

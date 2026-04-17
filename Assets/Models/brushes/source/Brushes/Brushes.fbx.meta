@@ -1,64 +1,9 @@
 fileFormatVersion: 2
-guid: 5fb360dacd38ce04ba76a2419205bee0
+guid: ffa8866c729a8bc4c8dc41febca27e23
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bristles
-    second: {fileID: 2100000, guid: 06f66f1a793a7544a87be8847230f702, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Coloured_Plastic
-    second: {fileID: 2100000, guid: d41ebfeec7b818c4abb021d02bb5de99, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: End_Bristles
-    second: {fileID: 2100000, guid: 7eea43035efd3014c9b38822d9c649ad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Large_Brush_Plastic
-    second: {fileID: 2100000, guid: a4850939554cc564ebb10d6a09bc5a0b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 0eb32d4582c8e7c4a870b56d960dccac, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 2e1f2a1ae5ba0aa4abbb7d9447ab0744, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Paint_Splatter
-    second: {fileID: 2100000, guid: 193745257a188e7488964c68efc25b96, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Roller_Fluff
-    second: {fileID: 2100000, guid: 16cb8634f7964664a9a26ac38daeb96c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rubber
-    second: {fileID: 2100000, guid: e0a81f3cca0b6a14f84eeb8e3ac8b22d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rubber_Grip
-    second: {fileID: 2100000, guid: cb4fcabab0ad48546bb6fc490dcd8c47, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Small_Brush_Plastic
-    second: {fileID: 2100000, guid: 80f960714776354499c57f5296f7ff8e, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
