@@ -21,14 +21,6 @@ public class ControllerHighlighter : MonoBehaviour
     [Tooltip("Time foe switching highlight from active to inactive")]
     public float inactiveInterval = 0.4f;
 
-    //public void FlashLeftX() => StartCoroutine(WaitAndFlashRoutine("Left_X_Button_Highlight", obj => leftXButtonHighlight = obj));
-    //public void FlashRightA() => StartCoroutine(WaitAndFlashRoutine("Right_A_Button_Highlight", obj => rightAButtonHighlight = obj));
-    //public void FlashLeftGrip() => StartCoroutine(WaitAndFlashRoutine("Left_Grip_Highlight", obj => leftGripHighlight = obj));
-    //public void FlashRightGrip() => StartCoroutine(WaitAndFlashRoutine("Right_Grip_Highlight", obj => rightGripHighlight = obj));
-    //public void FlashLeftMenu() => StartCoroutine(WaitAndFlashRoutine("Left_Menu_Button_Highlight", obj => leftMenuButtonHighlight = obj));
-    //public void FlashLeftThumbStick() => StartCoroutine(WaitAndFlashRoutine("Left_ThumbStick_Highlight", obj => leftThumbStickHighlight = obj));
-    //public void FlashRightThumbStick() => StartCoroutine(WaitAndFlashRoutine("Right_ThumbStick_Highlight", obj => rightThumbStickHighlight = obj));
-
     public void FlashLeftX() => FlushRoutine(leftXButtonHighlight);
     public void FlashRightA() => FlushRoutine(rightAButtonHighlight);
     public void FlashLeftGrip() => FlushRoutine(leftGripHighlight);

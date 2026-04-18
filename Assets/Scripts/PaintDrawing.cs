@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -20,6 +22,18 @@ public class PaintDrawing : MonoBehaviour
 
     public PlayContinuousSound playContinuousSound;
 
+    public float frontFloating = 0.002f;
+    public float backFloating = 0.004f;
+
+    public Color color = Color.white;
+
+    [Header("UI References")]
+    [Tooltip("Color palette canvas or its parent object")]
+    public GameObject colorPaletteUI;
+    [Tooltip("Choose trigger button")]
+    public InputAction secondaryButtonInput;
+    public GameObject[] othersUI;
+
     private LineRenderer currentLine;
     private List<Vector3> points = new List<Vector3>();
 
@@ -27,16 +41,27 @@ public class PaintDrawing : MonoBehaviour
     private Transform currentCanvas;   
     private Collider currentCanvasCollider;
 
+    private Vector3 lastPointWorldPos;
+
     private void OnEnable()
     {
         if (grabInteractable != null)
         {
             grabInteractable.activated.AddListener(OnTriggerPulled);
             grabInteractable.deactivated.AddListener(OnTriggerReleased);
+            grabInteractable.selectExited.AddListener(OnSelectExcited);
         }
         else
         {
-            Debug.LogError("Please assign  paint brush XRGrabInteractable to PaintDrawing.cs");
+            Debug.LogError("Please assign paint brush XRGrabInteractable to PaintDrawing.cs");
+        }
+
+        if (secondaryButtonInput != null)
+        {
+            secondaryButtonInput.Enable();
+
+            // OnPressed
+            secondaryButtonInput.performed += OnSecondaryButtonPressed;
         }
     }
 
@@ -46,6 +71,13 @@ public class PaintDrawing : MonoBehaviour
         {
             grabInteractable.activated.RemoveListener(OnTriggerPulled);
             grabInteractable.deactivated.RemoveListener(OnTriggerReleased);
+            grabInteractable.selectExited.RemoveListener(OnSelectExcited);
+        }
+        if (secondaryButtonInput != null)
+        {
+            secondaryButtonInput.performed -= OnSecondaryButtonPressed;
+
+            secondaryButtonInput.Disable();
         }
     }
 
@@ -58,6 +90,30 @@ public class PaintDrawing : MonoBehaviour
     {
         isTriggerPressed = false;
         EndTrail();
+    }
+
+    private void OnSelectExcited(SelectExitEventArgs args)
+    {
+        CloseColorPalette();
+    }
+
+    private void OnSecondaryButtonPressed(InputAction.CallbackContext context)
+    {
+        if (grabInteractable != null && grabInteractable.isSelected)
+        {
+            bool isCurrentlyActive = colorPaletteUI.activeSelf;
+            colorPaletteUI.SetActive(!isCurrentlyActive);
+
+            foreach (var item in othersUI)
+            {
+                if (item.activeSelf && !isCurrentlyActive) item.SetActive(false);
+            }
+        }
+    }
+
+    public void CloseColorPalette()
+    {
+        if(colorPaletteUI.activeSelf) colorPaletteUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -91,7 +147,7 @@ public class PaintDrawing : MonoBehaviour
                 {
                     StartTrail();
                 }
-                AddPoint(0.002f);
+                AddPoint(frontFloating);
             }
             else
             {
@@ -99,7 +155,7 @@ public class PaintDrawing : MonoBehaviour
                 {
                     StartTrail();
                 }
-                AddPoint(0.004f);
+                AddPoint(backFloating);
             }
             if (!playContinuousSound.audioSource.isPlaying)
             {
@@ -143,7 +199,10 @@ public class PaintDrawing : MonoBehaviour
         currentLine.useWorldSpace = false;
         currentLine.startWidth = lineWidth;
         currentLine.endWidth = lineWidth;
+        currentLine.startColor = color;
+        currentLine.endColor = color;
         points.Clear();
+        lastPointWorldPos = Vector3.zero;
     }
 
     private void AddPoint(float offset)
@@ -160,11 +219,13 @@ public class PaintDrawing : MonoBehaviour
 
         Vector3 localPos = currentCanvas.InverseTransformPoint(offsetPoint);
 
-        if (points.Count == 0 || Vector3.Distance(points[points.Count - 1], localPos) > minDistance)
+        if (points.Count == 0 || Vector3.Distance(lastPointWorldPos, offsetPoint) > minDistance)
         {
             points.Add(localPos);
             currentLine.positionCount = points.Count;
             currentLine.SetPosition(points.Count - 1, localPos);
+
+            lastPointWorldPos = offsetPoint;
         }
     }
 
